@@ -7,3 +7,5 @@ Database: MongoDB (hosted by MLab)
 
 hosted on digital ocean server
 demo will be visiable at https://growCtrl.bradtudor.com
+
+Engineering Total Time: 5 hours

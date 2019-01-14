@@ -5,23 +5,14 @@ const {
     GraphQLObjectType
 } = graphql
 
-//test data
-const testUser =   {userID: 'abc123', email: 'a@b.com'}
-const testDevice = {}
-const testRecord = {}
-
+import {user} from './user'
 
 
 
 const RootQueryType = new GraphQLObjectType({
     name: "RootQueryType",
     fields:{
-        user: {
-            type: UserType,
-            async resolve(parentValue, args, ctx, info){
-                return testUser
-            }
-        }
+        user
     }
 })
 
