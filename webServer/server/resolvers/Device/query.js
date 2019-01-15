@@ -1,16 +1,11 @@
-import db from 'mongodb'
-import User from '../../models/User'
+// Find All Devices Associated with a User   []
 
-export const user = async (parent, {data}, ctx, info) =>{
-    const {id, email} = data
-    let user
+// Given User ID return array of devices assocaiated with that user
 
-    if(id){
-         user =  await User.findById(db.ObjectID(id))
-    }else if(email){
-         user =  await User.findOne({email})
-    }
-
-    return user
-}
-
+export const userDevices = async (parent, {data}, ctx, info) =>{
+     let devices = []
+     const { id } = data
+     
+ 
+     return devices
+ }

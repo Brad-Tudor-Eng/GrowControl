@@ -1,5 +1,7 @@
+# ---------------Base Query, Mutation, Subscriptions----------------#
 type Query{
     user(data: FindUserInput ): User!
+    
 }
 
 type Mutation {
@@ -7,9 +9,10 @@ type Mutation {
 }
 
 type Subscription{
-    user: User!
+    records: RecordType!
+    data: DataType!
 }
-
+# -------------------------Input Types----------------------------#
 input CreateUserInput{
     name: String!
     email: String!
@@ -20,17 +23,12 @@ input FindUserInput{
     id: ID,
     email: String
 }
-
+# -------------------------Data Types----------------------------#
 type User {
     id: ID!
     name: String!
     email: String!
 
-}
-
-type UserSubscriptionPayload {
-    user: User!
-    mutation: String!
 }
 
 type Device {
@@ -59,11 +57,25 @@ type RecordType{
 }
 
 type DataType{
-
     time: String!
     light: Float
     temp: Float
     humidity: Float
     moisture: Float
 }
+# -------------------------Subscription Payloads----------------------------#
 
+type UserSubscriptionPayload {
+    user: User!
+    mutation: String!
+}
+
+type RecordsSubscriptionPayload {
+    record: RecordType!
+    mutation: String!
+}
+
+type DataSubscriptionPayload {
+    data: DataType!
+    mutation: String!
+}
