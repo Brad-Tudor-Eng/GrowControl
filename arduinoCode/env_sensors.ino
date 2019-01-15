@@ -87,7 +87,7 @@ digitalWrite(moisturePower, LOW);
 digitalWrite(dhtPowerPin, LOW);
 
 //wait 2 seconds before next loop
-const int seconds = 2;
+const int seconds = 5;
 const int timeToWait = seconds * 1000;
 delay(timeToWait);
 }
