@@ -1,7 +1,9 @@
 import db from 'mongodb'
 import User from '../../models/User'
 
+
 export const user = async (parent, {data}, ctx, info) =>{
+//find a user by ID or Email
     const {id, email} = data
     let user
 

@@ -9,7 +9,6 @@ type Mutation {
 }
 
 type Subscription{
-    records: RecordType!
     data: DataType!
 }
 # -------------------------Input Types----------------------------#
@@ -28,7 +27,6 @@ type User {
     id: ID!
     name: String!
     email: String!
-
 }
 
 type Device {
@@ -65,15 +63,6 @@ type DataType{
 }
 # -------------------------Subscription Payloads----------------------------#
 
-type UserSubscriptionPayload {
-    user: User!
-    mutation: String!
-}
-
-type RecordsSubscriptionPayload {
-    record: RecordType!
-    mutation: String!
-}
 
 type DataSubscriptionPayload {
     data: DataType!

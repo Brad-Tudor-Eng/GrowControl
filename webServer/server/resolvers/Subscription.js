@@ -1,12 +1,7 @@
-
-
+import * as record from './Record/subscription'
 
 const Subscription = {
-    user: {
-        subscribe(parent, args, { pubsub }, info) {
-            return pubsub.asyncIterator('user')
-        }
-    }
+    ...record
 }
 
 export default Subscription
