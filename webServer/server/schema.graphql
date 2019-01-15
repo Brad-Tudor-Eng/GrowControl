@@ -1,0 +1,69 @@
+type Query{
+    user(data: FindUserInput ): User!
+}
+
+type Mutation {
+    createUser(data: CreateUserInput): User!
+}
+
+type Subscription{
+    user: User!
+}
+
+input CreateUserInput{
+    name: String!
+    email: String!
+    password: String
+}
+
+input FindUserInput{
+    id: ID,
+    email: String
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+
+}
+
+type UserSubscriptionPayload {
+    user: User!
+    mutation: String!
+}
+
+type Device {
+    id: ID!
+    dev_name: String!
+    user: User!
+    settings: SettingsType!
+    records: [ RecordType ]
+}
+
+type SettingsType {
+    light: SettingType!
+    temp: SettingType!
+    humidity: SettingType!
+    moisture: SettingType!
+}
+
+type SettingType {
+    average: Float!
+    tol: Float!
+}
+
+type RecordType{
+    date: String!
+    data: [ DataType ]
+}
+
+type DataType{
+
+    time: String!
+    light: Float
+    temp: Float
+    humidity: Float
+    moisture: Float
+}
+

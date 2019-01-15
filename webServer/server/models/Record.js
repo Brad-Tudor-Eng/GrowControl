@@ -4,7 +4,6 @@ const moment = require('moment');
 
 
 const recordSchema = new Schema({
-    recordID: {type: String},
     date: { type: String, default: moment().format('DD/MM/YYYY') },
     data: [{
             time: {type: String, default: moment().format('hh:mm:ss')},
