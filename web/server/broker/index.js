@@ -8,7 +8,6 @@ require('dotenv').config()
 
 //setup the amqp message broker
 amqp.connect(process.env.AMQP_URI, (error, connection)=>{
-
   //create a new channel to receive information on
     connection.createChannel((error, ch)=>{
         //create a bulk data queue to receive information on
@@ -31,14 +30,15 @@ amqp.connect(process.env.AMQP_URI, (error, connection)=>{
     })//end of channel creation
 })//end of amqp connection
 
-
 /*---------------------------------------------------------------------------------------------------------------------*/
+
 //process the message data and return the device settings
 const processMessage = async (JSONdata) => {
-  const {deviceId: id, data} = JSONdata
+  const { deviceId: id, data } = JSONdata
 
-  /*id:       is a MongoDB object ID 
-    dev_name:  is a string specified by the user
+  /*
+    id:       is a MongoDB object ID 
+    dev_name:  is a string specified by the user,
     settings: { light: { average: Number, tol: Number}, 
                 temp: { average: Number, tol: Number }, 
                 humidity: { average: Number, tol: Number }, 
@@ -47,6 +47,7 @@ const processMessage = async (JSONdata) => {
     records:  [ {time: hh:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number} ]
     pubsub channel = `data-${today}-${userId}-${deviceId}`
   */
+
   const today = moment().format('DD/MM/YYYY');
   const device = await Device.findById(ObjectId(id))
           
@@ -73,7 +74,6 @@ const addNewRecord = async (device, date, data) => {
   let newRecord = { date, data:[data] }
       device.records.push(newRecord)
       await device.updateOne(device)
-      await device.save()
 }
 
 
@@ -84,7 +84,6 @@ const addDataToRecord = async (device, index, data) => {
   device.records[index].data.push(data);
     try {
       await device.updateOne(device);
-      await device.save()
     } catch (error) {
       console.log(error)
     }                
