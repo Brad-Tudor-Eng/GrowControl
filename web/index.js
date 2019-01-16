@@ -2,7 +2,7 @@ import { GraphQLServer, PubSub }    from 'graphql-yoga'
 import mongoose                     from 'mongoose'
 import Query                        from './server/resolvers/Query'
 import Mutation                     from './server/resolvers/Mutation'
-//import Subscription                 from './server/resolvers/Subscription'
+import Subscription                 from './server/resolvers/Subscription'
 
 require('dotenv').config()
 require('./server/broker/index')
@@ -16,7 +16,7 @@ const server = new GraphQLServer({
     resolvers: {
         Query,
         Mutation,
-//        Subscription
+        Subscription
     },
     context:{
         pubsub
@@ -33,12 +33,16 @@ const options = {
     playground: gqlEndpoint
 }
 
+/*TODO: BUILD REACT FRONT END
+    either serve from here or setup different service
+
 const app = server.express
 
 app.get('/', (req,res)=>{
     res.send('home')
 })
 
+*/
 
 server.start( options, ()=>{
     console.log('server has started')
