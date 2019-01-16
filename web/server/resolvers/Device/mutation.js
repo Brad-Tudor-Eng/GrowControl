@@ -1,10 +1,10 @@
 import Device from '../../models/Device'
 import { ObjectID } from 'mongodb'
+
 //   Add a device to the database [x]
-//   Add a device to a user []
 //   Update Device Settings [x]
 //   Update Device Name     [x]
-//   Delete Device          []
+//   Delete Device          [x]
 
 const defaultSettings = {
     light: {average: 0, tol: 0},
@@ -14,13 +14,13 @@ const defaultSettings = {
 }
 
 export const addDevice = async (parent, {data}, ctx, info) => {
-    let { name, userID} = data
+    let { name, userId } = data
     
-    userID ? userID = ObjectID(userID) : userID;
+    userId ? userId = ObjectID(userId) : userId;
 
     const deviceProperties = {
         dev_name: name,
-        user: userID,
+        user: userId,
         settings: defaultSettings,
         records: []
     }
@@ -32,23 +32,31 @@ export const addDevice = async (parent, {data}, ctx, info) => {
 
 
 export const updateDevice = async (parent, {data}, ctx, info) => {
-    let {id, name: dev_name, userID, settings} = data
+    
+    let {deviceId: id, name: dev_name, userId, settings} = data
     const update = {}
+    
     if(dev_name){ update.dev_name = dev_name }
+    
     if(settings){ 
         settings = { ...defaultSettings, ...settings}
         update.settings = settings }
-    if(userID){ update.user = ObjectID( userID ) }
+    
+    if(userId){ update.user = ObjectID( userId ) }
 
     const device = await Device.findByIdAndUpdate( 
         ObjectID(id), 
         {$set: update}, 
         {new: true}).populate('user')
+    
     return device
 }
 
-// export const deleteDevice = async (parent, {data}, ctx, info) => {
-//     const { id } = data
-//     const device = await Device.findByIdAndRemove( ObjectID(id) )
-//     return device
-// }
+export const deleteDevice = async (parent, {data}, ctx, info) => {
+    
+    const { deviceId: id } = data
+    
+    const device = await Device.findByIdAndRemove( ObjectID(id) )
+    
+    return device
+}

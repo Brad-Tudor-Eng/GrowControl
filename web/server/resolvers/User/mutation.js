@@ -9,15 +9,11 @@ import { ObjectID } from 'mongodb'
 
 export const createUser = async (parent, {data}, ctx, info)=>{
     const user = await User.create({ ...data })
-    const newUser = {   id: user._id.toString(), 
-                        name: user.name, 
-                        email: user.email
-                    }
-    return newUser
+    return user
 }
 
 export const updateUser = async (parent, {data}, ctx, info)=>{
-    let user = await User.findById( ObjectID(data.id)) 
+    let user = await User.findById( ObjectID(data.userId)) 
     if(data.email){user.email = data.email}
     //FIX ONCE AUTH IS IMPLICATED
     //VERY BAD!
@@ -27,7 +23,7 @@ export const updateUser = async (parent, {data}, ctx, info)=>{
 }
 
 export const deleteUser = async (parent, {data}, ctx, info)=>{
-    const { id } = data
+    const { userId: id } = data
     const user = await User.findByIdAndRemove( ObjectID(id) )
     return user
 }
