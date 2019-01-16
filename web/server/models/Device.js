@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const recordSchema = require('./Record');
 
 const deviceSchema = new Schema({
-    deviceID: String,
     dev_name: String,
     user: {
       type: Schema.Types.ObjectId,

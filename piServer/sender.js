@@ -1,6 +1,7 @@
-var amqp = require('amqplib/callback_api');
-const uuid = require('uuidv4')
-const fs = require('fs');
+var     amqp    = require('amqplib/callback_api');
+const   uuid    = require('uuidv4')
+const   fs      = require('fs');
+
 require('dotenv').config(); 
 
 // -------------------------Arduino board-------------------------------------//

@@ -1,18 +1,12 @@
-var   amqp          = require('amqplib/callback_api')
-const mongoose      = require('mongoose')
-const moment        = require('moment')
-const axios         = require('axios')
-const { ObjectId }  = require('mongodb')
+import  amqp          from 'amqplib/callback_api'
+import  moment        from 'moment'
+import  { ObjectId }  from 'mongodb'
+import  Device        from '../models/Device'
+import  { pubsub }    from '../../index'
 
-var   Device        = require('./models/Device')
-                      require('dotenv').config()
+require('dotenv').config()
 
 
-//setup Mongoose connectino
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true})
-mongoose.connection.once('open', ()=>{
-  console.log(' [x] database connected')
-})
 
 
 //setup the amqp message broker
@@ -42,10 +36,9 @@ amqp.connect(process.env.AMQP_URI, (error, connection)=>{
 
 /*---------------------------------------------------------------------------------------------------------------------*/
 //process the message data and return the device settings
-const processMessage = async (dev) => {
-  const {dev_name, data} = dev
-  /* dev = 
-    deviceID: is a MongoDB object ID
+const processMessage = async (JSONdata) => {
+  const {id, data} = JSONdata
+  /*id:       is a MongoDB object ID 
     devName:  is a string specified by the user
     settings: { light: { average: Number, tol: Number}, 
                 temp: { average: Number, tol: Number }, 
@@ -56,7 +49,7 @@ const processMessage = async (dev) => {
   */
 
   const today = moment().format('DD/MM/YYYY');
-  const device = await Device.findOne({dev_name: ObjectId(dev_name) })
+  const device = await Device.findById(db.ObjectId(id))
 
   //check to see if the device was found
   if(device !== null){
@@ -78,9 +71,6 @@ const processMessage = async (dev) => {
 const addNewRecord = async (device, date, data) => {
   //data {time: hh:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number}
   let newRecord = { date, data:[data] }
-
-  //send data with axios to api server to be relayed to publish subscription to front end
-
       device.records.push(newRecord);  
       await device.updateOne(device)
 }
@@ -89,7 +79,6 @@ const addNewRecord = async (device, date, data) => {
 /*---------------------------------------------------------------------------------------------------------------------*/
 //method for adding data to a record
 const addDataToRecord = async (device, index, data) => {
-  //send data with axios to api server to be relayed to publish subscription to front end
   
   device.records[index].data.push(data);
     try {

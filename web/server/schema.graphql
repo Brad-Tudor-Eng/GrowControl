@@ -6,11 +6,13 @@ type Query{
 
 type Mutation {
     createUser(data: CreateUserInput): User!
+    updateUserEmail(data: UpdateUserEmailInput): User!
+    deleteUser(data: DeleteUserInput): User!
 }
 
-type Subscription{
-    data: DataType!
-}
+# type Subscription{
+#     data: DataType!
+# }
 # -------------------------Input Types----------------------------#
 input CreateUserInput{
     name: String!
@@ -21,6 +23,15 @@ input CreateUserInput{
 input FindUserInput{
     id: ID,
     email: String
+}
+
+input UpdateUserEmailInput{
+    id: ID!,
+    email: String!
+}
+
+input DeleteUserInput{
+    id: ID!
 }
 # -------------------------Data Types----------------------------#
 type User {

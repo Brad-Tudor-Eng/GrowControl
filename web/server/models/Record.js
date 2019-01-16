@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const moment = require('moment');
 
-
 const recordSchema = new Schema({
     date: { type: String, default: moment().format('DD/MM/YYYY') },
     data: [{
@@ -14,7 +13,5 @@ const recordSchema = new Schema({
         }]
 
 });
-
-
 
 module.exports = recordSchema

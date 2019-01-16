@@ -2,10 +2,12 @@ import { GraphQLServer, PubSub }    from 'graphql-yoga'
 import mongoose                     from 'mongoose'
 import Query                        from './server/resolvers/Query'
 import Mutation                     from './server/resolvers/Mutation'
-import Subscription                 from './server/resolvers/Subscription'
-require('dotenv').config()
+//import Subscription                 from './server/resolvers/Subscription'
 
-const pubsub = new PubSub()
+require('dotenv').config()
+//require('./server/broker/index')
+
+export const pubsub = new PubSub()
 
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true})
 
@@ -14,7 +16,7 @@ const server = new GraphQLServer({
     resolvers: {
         Query,
         Mutation,
-        Subscription
+//        Subscription
     },
     context:{
         pubsub

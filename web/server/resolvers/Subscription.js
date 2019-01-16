@@ -1,7 +1,7 @@
-import * as record from './Record/subscription'
+//import * as record from './Record/subscription'
 
 const Subscription = {
-    ...record
+//  ...record
 }
 
 export default Subscription
