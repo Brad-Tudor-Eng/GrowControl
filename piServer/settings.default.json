@@ -1,1 +1,10 @@
-{"dev_name":"GreenApple1","settings":{"light":{"average":50,"tol":50},"temp":{"average":50,"tol":50},"humidity":{"average":50,"tol":50},"moisture":{"average":50,"tol":50}},"id":""}
+{
+    "dev_name":"GreenApple1",
+    "user": "",
+    "settings":{
+        "light":{"average":50,"tol":50},
+        "temp":{"average":50,"tol":50},
+        "humidity":{"average":50,"tol":50},
+        "moisture":{"average":50,"tol":50}},
+    "deviceId":"5c3f88501a89ca3a9c26c16d"
+}
