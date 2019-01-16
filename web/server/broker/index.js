@@ -34,22 +34,26 @@ amqp.connect(process.env.AMQP_URI, (error, connection)=>{
 
 //process the message data and return the device settings
 const processMessage = async (JSONdata) => {
-  const { deviceId: id, data } = JSONdata
+  const { deviceId: id, data, user } = JSONdata
 
   /*
-    id:       is a MongoDB object ID 
-    dev_name:  is a string specified by the user,
-    settings: { light: { average: Number, tol: Number}, 
-                temp: { average: Number, tol: Number }, 
-                humidity: { average: Number, tol: Number }, 
-                moisture: { average: Number, tol: Number }
-              }
-    records:  [ {time: hh:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number} ]
+    id:         is a MongoDB object ID 
+    dev_name:   is a string specified by the user,
+    user:       is a MongoDB object ID connecting the device to the user
+    settings:   { light: { average: Number, tol: Number}, 
+                  temp: { average: Number, tol: Number }, 
+                  humidity: { average: Number, tol: Number }, 
+                  moisture: { average: Number, tol: Number }
+                }
+    records:    [ {time: hh:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number} ]
     pubsub channel = `data-${today}-${userId}-${deviceId}`
   */
 
   const today = moment().format('DD/MM/YYYY');
   const device = await Device.findById(ObjectId(id))
+
+  console.log(`data on amqp server:${data}`)
+  //if(user){ pubsub.publish(`data-${today}-${user}-${id}`, {data: data}) }
           
   //check to see if the device was found
   if(device !== null){
