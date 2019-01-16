@@ -5,7 +5,7 @@ import Mutation                     from './server/resolvers/Mutation'
 //import Subscription                 from './server/resolvers/Subscription'
 
 require('dotenv').config()
-//require('./server/broker/index')
+require('./server/broker/index')
 
 export const pubsub = new PubSub()
 
@@ -39,6 +39,8 @@ app.get('/', (req,res)=>{
     res.send('home')
 })
 
+
 server.start( options, ()=>{
     console.log('server has started')
 })
+

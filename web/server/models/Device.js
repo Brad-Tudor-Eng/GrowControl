@@ -13,7 +13,7 @@ const deviceSchema = new Schema({
                 humidity: { average: Number, tol: Number }, 
                 moisture: { average: Number, tol: Number }
               },
-     records: [ recordSchema ]
+    records: [ recordSchema ]
 });
 
 const Device = mongoose.model('device', deviceSchema);
