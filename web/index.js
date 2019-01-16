@@ -1,8 +1,8 @@
-import { GraphQLServer, PubSub } from 'graphql-yoga'
-import mongoose from 'mongoose'
-import Query from './server/resolvers/Query'
-import Mutation from './server/resolvers/Mutation'
-import Subscription from './server/resolvers/Subscription'
+import { GraphQLServer, PubSub }    from 'graphql-yoga'
+import mongoose                     from 'mongoose'
+import Query                        from './server/resolvers/Query'
+import Mutation                     from './server/resolvers/Mutation'
+import Subscription                 from './server/resolvers/Subscription'
 require('dotenv').config()
 
 const pubsub = new PubSub()

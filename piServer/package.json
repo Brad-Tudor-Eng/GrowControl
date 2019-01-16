@@ -9,6 +9,7 @@
   "author": "Brad Tudor",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "serialport": "^7.0.2"
   }
 }
