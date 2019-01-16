@@ -1,19 +1,25 @@
 # ---------------Base Query, Mutation, Subscriptions----------------#
 type Query{
     user(data: FindUserInput ): User!
-    
+
 }
 
 type Mutation {
     createUser(data: CreateUserInput): User!
-    updateUserEmail(data: UpdateUserEmailInput): User!
+    updateUser(data: UpdateUserInput): User!
     deleteUser(data: DeleteUserInput): User!
+
+    addDevice(data: AddDeviceInput): Device
+    updateDevice(data: UpdateDeviceInput): Device
+    # deleteDevice(data: DeleteDeviceInput): Device
 }
 
 # type Subscription{
 #     data: DataType!
 # }
 # -------------------------Input Types----------------------------#
+
+#_______________-User-_____________________#
 input CreateUserInput{
     name: String!
     email: String!
@@ -25,19 +31,49 @@ input FindUserInput{
     email: String
 }
 
-input UpdateUserEmailInput{
+input UpdateUserInput{
     id: ID!,
-    email: String!
+    email: String
+    password: String
 }
 
 input DeleteUserInput{
     id: ID!
 }
+
+#_______________-Device-_____________________#
+
+input AddDeviceInput{
+    name: String!
+    userID: ID!
+}
+
+input UpdateDeviceInput{
+    id: ID!
+    userID: ID
+    name: String
+    settings: SettingsTypeInput
+}
+
+input SettingsTypeInput{
+    light: SettingTypeInput
+    temp: SettingTypeInput
+    humidity: SettingTypeInput
+    moisture: SettingTypeInput
+}
+
+input SettingTypeInput{
+    average: Float
+    tol: Float
+}
+
+
 # -------------------------Data Types----------------------------#
 type User {
     id: ID!
     name: String!
     email: String!
+    devices: [Device]
 }
 
 type Device {

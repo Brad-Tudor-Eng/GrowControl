@@ -16,9 +16,13 @@ export const createUser = async (parent, {data}, ctx, info)=>{
     return newUser
 }
 
-export const updateUserEmail = async (parent, {data}, ctx, info)=>{
-    const { id, email } = data
-    const user = await User.findByIdAndUpdate( ObjectID( id ) , { $set: { email }},{new: true})
+export const updateUser = async (parent, {data}, ctx, info)=>{
+    let user = await User.findById( ObjectID(data.id)) 
+    if(data.email){user.email = data.email}
+    //FIX ONCE AUTH IS IMPLICATED
+    //VERY BAD!
+    if(data.password){user.password = data.password}
+    user.save()
     return user
 }
 
