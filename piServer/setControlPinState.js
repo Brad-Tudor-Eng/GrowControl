@@ -1,12 +1,17 @@
 const   Gpio    = require('onoff').Gpio
 
-const setControlPinState = (test, controlPins) =>{
+const controlPins = {
+    light: 14,
+    temp: 13,
+    humidity: 12,
+    moisture: 13
+}
+
+const setControlPinState = (test, key) =>{
+    console.log('setting state of the GPIO pins')
     const state = test ? 1 : 0;
 
-    for (let key in controlPins){
-        if( controlPins.hasOwnProperty(key) ){
-            // setup a new GPIO control
-            let control = new Gpio(key, controlPins[key])
+            let control = new Gpio(controlPins[key],'out')
             // check the current state of the pin
             const currentState = control.readSync()
             // if the current state doesn't match the test change it.
@@ -15,8 +20,7 @@ const setControlPinState = (test, controlPins) =>{
             }
             // release the control
             control.unexport()
-        }
-    }
+            
 }
 
 module.exports = {
