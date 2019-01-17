@@ -1,31 +1,55 @@
-
-
 // -------------------------Arduino board-------------------------------------//
 
 const SerialPort = require('serialport'); 
 const Readline = SerialPort.parsers.Readline;
-const port = new SerialPort('COM3'); 
+//connection port for arduino
+const port = new SerialPort('/dev/ttyUSB0'); 
 const parser = port.pipe(new Readline({delimiter: '\r\n'})); //Read the line only when new line comes.
 
-// --------------Read Settings Saved In Local File----------------------------//
+// ----------------------Raspberry PI Code-------------------------------------//
+// ---------------------------------------------------------------------------//
 
-const fs = require('fs');
+const   moment           = require('moment')
+const   fs               = require('fs');
 
-// //Read initial settings
+const { sendData }       = require('./sendData')
+const { controlDevices } = require('./controlDevices')
+
+require('dotenv').config(); 
+
+//SERVER STARTUP CODE
+
+//read the settings from the settings.JSON file
 var device_settings = fs.readFileSync(__dirname + '/settings.json', { encoding: 'utf8' });
 
-// if settings file has been cleared out update the settings from default .json
+//if the settings.JSON file is empty reset the default settings
 if(device_settings === "{}"){
 		device_settings = fs.readFileSync(__dirname + '/settings.default.json', { encoding: 'utf8' });
 		fs.writeFile(__dirname + '/settings.json',device_settings,(err)=>{ if (err) throw err; });
-    }
+	}
+
+'Print the device name to the console'
+let {dev_name }  = JSON.parse(device_settings)
+console.log(`---------------------Raspberry PI Service has started------------------------`)
+console.log(`Device Name: ${dev_name}`);
+
+//----------------------Stream Records to Server-------------------------------//
+//this code is triggered when the raspberry pi receives data from the arduino board
+parser.on('data', function (ArduinoData) {
     
-// ----------Read Data from Arduino and Stream to Message Broker---------------//
-//setup listener for serial port
+    //read the settings from the JSON file
+    let device_settings = fs.readFileSync(__dirname + '/settings.json', { encoding: 'utf8' });
+    let device = JSON.parse(device_settings);
+   
+    //convert the device to a buffer
+    //device        = { dev_name, user, settings, deviceId }
+    //ArduinoData   = { light: Number, temp: Number, humidity: Number, moisture: Number }
+    let time = moment().format('HH:mm:ss')
+    const data = {time, ...ArduinoData}
+    let message = new Buffer.from(JSON.stringify({...device, data}))
 
-    parser.on('data', data=>{
-        //data is JSON data for the arduino board.
-        //ex:  "{"light": 123, "temp": 123, "humidity": 123, "moisture": 123}"
-
-        console.log(data)
-    })
+//Send data to amqp connection
+    sendData(message)
+//Process data to change Raspberry Pi controls    
+    controlDevices(ArduinoData)
+});//end of parser

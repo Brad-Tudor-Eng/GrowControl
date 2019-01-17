@@ -11,6 +11,8 @@
   "dependencies": {
     "amqplib": "^0.5.3",
     "dotenv": "^6.2.0",
+    "moment": "^2.23.0",
+    "onoff": "^3.2.2",
     "serialport": "^7.0.2",
     "uuidv4": "^2.0.0"
   }

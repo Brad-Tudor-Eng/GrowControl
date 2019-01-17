@@ -45,7 +45,7 @@ const processMessage = async (JSONdata) => {
                   humidity: { average: Number, tol: Number }, 
                   moisture: { average: Number, tol: Number }
                 }
-    records:    [ {time: hh:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number} ]
+    records:    [ {time: HH:mm:ss, light: Number, temp: Number, humidity: Number, moisture: Number} ]
     pubsub channel = `data-${today}-${userId}-${deviceId}`
   */
 
