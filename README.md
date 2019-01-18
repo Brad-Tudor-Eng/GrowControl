@@ -17,4 +17,4 @@ enviroment variables need to be set for:
 AMQP_URI
 MONGO_URI
 QUEUE_NAME
-
+PORT

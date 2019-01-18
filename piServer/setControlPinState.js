@@ -1,10 +1,10 @@
 const   Gpio    = require('onoff').Gpio
 
 const controlPins = {
-    light: 14,
-    temp: 13,
-    humidity: 12,
-    moisture: 13
+    light: 37,
+    temp: 35,
+    humidity: 33,
+    moisture: 31
 }
 
 const setControlPinState = (test, key) =>{

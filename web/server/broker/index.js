@@ -19,13 +19,10 @@ amqp.connect(process.env.AMQP_URI, (error, connection)=>{
             let {correlationId, replyTo} = message.properties
             //extract the data from the message
             //deviceID must be entered into the device before setting up
-            let JSONdata = JSON.parse(message.content.toJSON())
+              let JSONdata = JSON.parse(message.content.toString())
             //process the measruement data
-            let deviceSettings = processMessage(JSONdata)
-            //respond to the raspberry pi with the device settings
-            ch.sendToQueue(replyTo,  deviceSettings,  { correlationId } );
-            //acknowledge the message
-            ch.ack(message)
+              processMessage(JSONdata, ch, replyTo, correlationId)
+              ch.ack(message)
           }) //end of consume
     })//end of channel creation
 })//end of amqp connection
@@ -33,7 +30,7 @@ amqp.connect(process.env.AMQP_URI, (error, connection)=>{
 /*---------------------------------------------------------------------------------------------------------------------*/
 
 //process the message data and return the device settings
-const processMessage = async (JSONdata) => {
+const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
   const { deviceId: id, data, user } = JSONdata
 
   /*
@@ -52,9 +49,7 @@ const processMessage = async (JSONdata) => {
   const today = moment().format('DD/MM/YYYY');
   const device = await Device.findById(ObjectId(id))
 
-  console.log(`data on amqp server:${data}`)
   //if(user){ pubsub.publish(`data-${today}-${user}-${id}`, {data: data}) }
-          
   //check to see if the device was found
   if(device !== null){
     //check to see if there is a record with todays date
@@ -66,7 +61,9 @@ const processMessage = async (JSONdata) => {
     const {dev_name, settings} = device
     const newSettings = JSON.stringify( { "deviceId": id, dev_name, settings })
     //return the new settings
-    return new Buffer.from(JSON.stringify(newSettings))
+    const msg = new Buffer.from(JSON.stringify(newSettings), JSON)
+    ch.sendToQueue(replyTo,  msg,  { correlationId } );
+    
   }
 }
 

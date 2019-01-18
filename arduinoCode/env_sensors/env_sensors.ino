@@ -1,4 +1,8 @@
+#include <ArduinoJson.h>
 #include <TroykaDHT.h>
+
+StaticJsonBuffer<200> jsonBuffer;
+JsonObject& root = jsonBuffer.createObject();
 
 // These constants won't change. They're used to give names to the pins used:
 //input pins
@@ -24,7 +28,6 @@ int moisture ;
 
 int sensorValue = 0;
 
-char root;
 
 //setup the DHT Sensor
 DHT dht(dhtReadPin, DHT11);
@@ -32,6 +35,9 @@ DHT dht(dhtReadPin, DHT11);
 void setup() {
   // initialize serial communications at 9600 bps:
   Serial.begin(9600);
+
+
+
 
 
   //configure the power pins
@@ -44,6 +50,8 @@ void setup() {
 }
 
 void loop() {
+
+  
 //turn on the sensors
 digitalWrite(lightPower, HIGH);
 digitalWrite(moisturePower, HIGH);
@@ -54,7 +62,7 @@ delay(500);
 dht.read();
 //read the light values
 // preMappedLight = analogRead(aLightPin);
-  light = analogRead(aLightPin);
+light = analogRead(aLightPin);
 // light = map(preMappedLight, 0, 790, 0, 1000);
 
 //read the Moisture values
@@ -66,20 +74,14 @@ dht.read();
   preMappedHumidity = dht.getHumidity();
   humidity = map(preMappedHumidity, 0, 18, 0, 100);
 
-//compile the JSON String
-String JSON_Head = "\"{";
-String JSON_Tail = "}\"";
-String lightSTR = "\"light\": ";
-String tempSTR = "\"temp\": ";
-String humiditySTR = "\"humidity\": ";
-String moistureSTR = "\"moisture\": ";
-String comma = ", ";
 
-//compile the JSON data
-String JSON = JSON_Head + lightSTR + light + comma + tempSTR + temp + comma + humiditySTR + humidity + comma + moistureSTR + moisture + JSON_Tail;
+root["light"] = light;
+root["temp"] = temp;
+root["humidity"] = humidity;
+root["moisture"] = moisture;
 
-//send out the JSON data
-Serial.println(JSON);
+root.printTo(Serial);
+Serial.println();
 
 //turn off the sensors
 digitalWrite(lightPower, LOW);
@@ -87,7 +89,5 @@ digitalWrite(moisturePower, LOW);
 digitalWrite(dhtPowerPin, LOW);
 
 //wait 2 seconds before next loop
-const int seconds = 5;
-const int timeToWait = seconds * 1000;
-delay(timeToWait);
+delay(60000);
 }
