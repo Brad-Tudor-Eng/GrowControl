@@ -47,7 +47,7 @@ const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
     pubsub channel = `data-${today}-${userId}-${deviceId}`
   */
 
-  const today = moment().format('DD/MM/YYYY');
+  const today = moment().format('L');
   const device = await Device.findById(ObjectId(id))
 
   const user = device.user    

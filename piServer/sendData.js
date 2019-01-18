@@ -18,7 +18,6 @@ const sendData = async ( message ) => {
                 if (msg.properties.correlationId == corr) {
                     //convert the messge content from buffer to JSON
                     let JSONmsg = JSON.parse(msg.content.toString())
-                        console.log(JSONmsg)
                     //update the settings in the JSON file
                         fs.writeFile(__dirname + '/settings.json',JSONmsg,(err)=>{ if (err) throw err; });
                     //close the connection

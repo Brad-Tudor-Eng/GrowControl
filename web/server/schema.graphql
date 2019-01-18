@@ -2,6 +2,7 @@
 type Query{
     user(data: FindUserInput ): User!
     findUserDevices(data: FindUserDevicesInput): [Device]
+
     recordOneDay(data: RecordOneDayInput): RecordType
     recordDateRange(data: RecordDateRangeInput): [RecordType]
     recordAll(data: RecordAllInput): [RecordType]
