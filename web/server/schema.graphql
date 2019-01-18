@@ -18,7 +18,7 @@ type Mutation {
 }
 
 type Subscription{
-    data: DataType!
+    data(data: DataSubscriptionInput): DataType!
 }
 
 # -------------------------Input Types----------------------------#
@@ -102,6 +102,7 @@ input RecordAllInput{
 }
 
 
+
 # -------------------------Data Types----------------------------#
 type User {
     id: ID!
@@ -147,5 +148,4 @@ type DataType{
 
 type DataSubscriptionPayload {
     data: DataType!
-    mutation: String!
 }

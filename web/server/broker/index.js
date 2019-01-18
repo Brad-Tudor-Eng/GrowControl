@@ -31,7 +31,8 @@ amqp.connect(process.env.AMQP_URI, (error, connection)=>{
 
 //process the message data and return the device settings
 const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
-  const { deviceId: id, data, user } = JSONdata
+
+  const { deviceId: id, data } = JSONdata
 
   /*
     id:         is a MongoDB object ID 
@@ -49,13 +50,16 @@ const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
   const today = moment().format('DD/MM/YYYY');
   const device = await Device.findById(ObjectId(id))
 
-  //if(user){ pubsub.publish(`data-${today}-${user}-${id}`, {data: data}) }
+  const user = device.user    
+ 
+  if(user){ pubsub.publish(`data-${today}-${user}-${id}`, { data: data }) }
   //check to see if the device was found
   if(device !== null){
     //check to see if there is a record with todays date
     const index = device.records.findIndex(({ date })=> date === today);
     //if there is no record with todays date add a new record.
     //if there is a record with todays date add data to that record
+
     index === -1 ? addNewRecord(device, today, data) : addDataToRecord(device, index, data)
     //return device settings as buffer to send back to receiver
     const {dev_name, settings} = device
