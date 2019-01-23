@@ -22,6 +22,22 @@ export const updateUser = async (parent, {data}, ctx, info)=>{
     return user
 }
 
+export const addDeviceToUser = async (parent, {data}, ctx, info) =>{
+    const {userId, deviceId} = data
+    const user = await User.findById(ObjectID(userId)).populate('device')
+    let exists = user.device.find((device)=>{
+        return ObjectID(device._id).toString() == deviceId
+    })
+
+    if(!exists){
+        user.device.push(ObjectID(deviceId))
+        await user.save()
+    }
+    const userWithDevice = await User.findById(ObjectID(userId)).populate('device')
+    
+    return userWithDevice
+}
+
 export const deleteUser = async (parent, {data}, ctx, info)=>{
     const { userId: id } = data
     const user = await User.findByIdAndRemove( ObjectID(id) )

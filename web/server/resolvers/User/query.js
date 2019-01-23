@@ -10,7 +10,7 @@ export const user = async (parent, {data}, ctx, info) =>{
     if(id){
          user =  await User.findById(db.ObjectID(id))
     }else if(email){
-         user =  await User.findOne({email})
+         user =  await User.findOne({email}).populate('device')
     }
 
     return user

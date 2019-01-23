@@ -11,7 +11,9 @@ type Query{
 type Mutation {
     createUser(data: CreateUserInput): User!
     updateUser(data: UpdateUserInput): User!
+    addDeviceToUser(data: AddDeviceToUserInput): User!
     deleteUser(data: DeleteUserInput): User!
+
 
     addDevice(data: AddDeviceInput): Device
     updateDevice(data: UpdateDeviceInput): Device
@@ -28,7 +30,8 @@ type Subscription{
 input CreateUserInput{
     name: String!
     email: String!
-    password: String
+    device: ID
+    password: String!
 }
 
 input FindUserInput{
@@ -44,6 +47,11 @@ input UpdateUserInput{
 
 input DeleteUserInput{
     userId: ID!
+}
+
+input AddDeviceToUserInput{
+    userId: ID!
+    deviceId: ID!
 }
 
 #_______________-Device-_____________________#
@@ -109,7 +117,7 @@ type User {
     id: ID!
     name: String!
     email: String!
-    devices: [Device]
+    device: [Device]
 }
 
 type Device {

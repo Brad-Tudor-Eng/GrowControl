@@ -28,24 +28,16 @@ const server = new GraphQLServer({
 server.express.use(cors())
 
 const gqlEndpoint = '/gql'
+const gqlsubscribe = '/subscribe'
 
 const options = {
     port: process.env.PORT,
     endpoint: gqlEndpoint,
-    subscriptions: gqlEndpoint,
+    subscriptions: gqlsubscribe,
     playground: gqlEndpoint
 }
 
-/*TODO: BUILD REACT FRONT END
-    either serve from here or setup different service
 
-const app = server.express
-
-app.get('/', (req,res)=>{
-    res.send('home')
-})
-
-*/
 
 server.start( options, ()=>{
     console.log('server has started')
