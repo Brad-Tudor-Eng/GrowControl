@@ -3,6 +3,7 @@ import mongoose                     from 'mongoose'
 import Query                        from './server/resolvers/Query'
 import Mutation                     from './server/resolvers/Mutation'
 import Subscription                 from './server/resolvers/Subscription'
+import cors                         from 'cors'
 
 require('dotenv').config()
 require('./server/broker/index')
@@ -23,6 +24,8 @@ const server = new GraphQLServer({
     }
 
 })
+
+server.express.use(cors())
 
 const gqlEndpoint = '/gql'
 
