@@ -48,11 +48,10 @@ const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
   */
 
   const today = moment().format('L');
-  const device = await Device.findById(ObjectId(id))
-
-  const user = device.user    
+  const device = await Device.findById(ObjectId(id)).populate('user')
+  const userId = device.user._id    
  
-  if(user){ pubsub.publish(`data-${today}-${user}-${id}`, { data: data }) }
+  if(userId){ pubsub.publish(`data-${today}-${userId}-${id}`, { data: data }) }
   //check to see if the device was found
   if(device !== null){
     //check to see if there is a record with todays date
