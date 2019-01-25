@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
 import { ApolloProvider } from "react-apollo"
-import App from './Components/App';
-import reducers from './Reducers'
-
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
+
+import './Components/Styles/Index.scss'
+
+import App from './Components/App'
 
 
 // Create an http link:
@@ -42,11 +41,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const store = createStore(reducers)
+
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <Provider store={store}>
             <App />
-        </Provider>
     </ApolloProvider>
 , document.getElementById('root'));
