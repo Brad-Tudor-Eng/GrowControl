@@ -1,0 +1,35 @@
+.landing_about,
+.landing_kits{
+  
+    grid-column: landing-about-start / landing-center-start;
+    background-color:  rgb(255, 255, 255);;
+    padding: 3.5rem;
+
+
+    & h2{
+        text-align: center;
+        font-size: 4rem;
+        font-weight: 900;
+        letter-spacing: .1rem;
+        background: -webkit-linear-gradient(0deg, rgb(93, 202, 253),rgb(37, 186, 255));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: 15vh;
+    }
+
+    &_body{
+        & h3{
+            margin-top: 1rem;
+            margin-bottom: .5rem;
+            font-size: 2.5rem;
+            color: rgb(0, 76, 148);
+        }
+
+        & p{
+            font-size: 1.5rem;
+            text-indent: 2rem;
+            color: rgb(230, 230, 230);
+            margin-bottom: 2rem;
+        }
+    }
+}

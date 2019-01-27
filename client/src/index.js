@@ -8,7 +8,6 @@ import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
-import './Components/Styles/Index.scss'
 
 import App from './Components/App'
 

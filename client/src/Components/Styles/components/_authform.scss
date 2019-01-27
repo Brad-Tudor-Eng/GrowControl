@@ -1,0 +1,74 @@
+.authForm{
+    grid-column: signup / login-end;
+    grid-row: center-header-end / mushroom-end;
+
+padding: 3rem;
+padding-top: 1rem;
+display: flex;
+flex-direction: column;
+
+    &_close{
+        font-family: 'Kanit', sans-serif;
+        font-size: 2rem;
+        font-weight: 800i;
+        color: rgb(56, 56, 56);
+        align-self: flex-end;
+        cursor: pointer;
+        &:hover{
+            transform: translateY(-.2rem) scale(1.15);
+        }
+    }
+
+    & input{
+        display: block;
+        padding-left: .5rem;
+        margin: 1rem 0;
+        width: 90%;
+        height: 4rem;
+        z-index: 2;
+        background-color: rgba(2, 226, 255, 0);
+        border: .25rem solid rgb(0, 168, 247);
+        border-radius: .5rem;
+        
+        
+        &:focus{
+            outline: none;
+        }
+    }
+
+    & label{
+        display: inline-block;
+        width: .5rem;
+        transform: translateY(-4rem) translateX(.5rem);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgb(56, 56, 56);
+    }
+
+    & input:focus + label,
+    & input:not([value=""]) + label
+    {
+        transform: translateY(-7.5rem);
+    }
+
+
+
+    & input:invalid{
+        background-color: rgba(255, 60, 0, 0.2);
+    }
+
+
+
+
+    & h2{
+        text-align: center;
+        font-family: 'Kanit', sans-serif;
+        font-size: 6rem;
+        font-weight: 800i;
+        letter-spacing: .1rem;
+        background: -webkit-linear-gradient(90deg, rgb(85, 85, 85),rgb(20, 20, 20));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+    }
+}

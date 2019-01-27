@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {  BrowserRouter, Route } from 'react-router-dom'
 
-import Header       from './Header'
-import Landing      from './Landing'
-import Dashboard    from './Dashboard'
+import './Styles/Index.scss'
+
+import Landing      from './Landing/Landing'
+import Dashboard    from './Dashboard/Dashboard'
 
 class App extends Component {
 
@@ -14,7 +15,6 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <Header />
                         <Route path="/" exact component={Landing}/>
                         <Route path="/Dashboard" exact component={Dashboard}/>
                     </div>
