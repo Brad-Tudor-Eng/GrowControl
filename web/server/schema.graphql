@@ -9,7 +9,7 @@ type Query{
 }
 
 type Mutation {
-    createUser(data: CreateUserInput): User!
+    createUser(data: CreateUserInput): User
     updateUser(data: UpdateUserInput): User!
     addDeviceToUser(data: AddDeviceToUserInput): User!
     deleteUser(data: DeleteUserInput): User!

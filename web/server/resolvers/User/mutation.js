@@ -8,8 +8,10 @@ import { ObjectID } from 'mongodb'
 
 
 export const createUser = async (parent, {data}, ctx, info)=>{
-    const user = await User.create({ ...data })
-    return user
+    console.log(data)
+    return null
+    //const user = await User.create({ ...data })
+    //return user
 }
 
 export const updateUser = async (parent, {data}, ctx, info)=>{
