@@ -1,0 +1,15 @@
+.gauges{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.gauge{
+    margin: 1rem;
+    padding: 5vh;
+    border: 1rem solid $color_primary;
+    border-radius: 100%;
+    background-color: $color_grey_dark ;
+}

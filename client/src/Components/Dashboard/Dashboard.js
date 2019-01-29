@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import {  connect } from 'react-redux'
 import actions from '../../Actions'
 
+import Chart from './Chart'
+import DataTable from './DataTable'
+import DeviceInfo from './DeviceInfo'
+import Gauges from './Gauges'
+import Menu from './Menu'
 
 
 class Dashboard extends Component {
@@ -9,7 +14,11 @@ class Dashboard extends Component {
         console.log(this.state)
         return(
             <div className="dashboard" >
-             <p>It's the Mother fucking dashboard</p>
+                <Menu />
+                <Chart />
+                <DataTable />
+                <DeviceInfo />
+                <Gauges />
             </div>
         )
     }

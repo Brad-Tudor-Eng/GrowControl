@@ -101,7 +101,7 @@ const CREATE_USER = gql`
                       <Mutation 
                       mutation={CREATE_USER} 
                       update={(cache, { data })=>{
-                        this.props.setUser(data)
+                        // set the user data
                         this.props.history.push('/dashboard')
                       }}
                       >

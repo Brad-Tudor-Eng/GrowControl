@@ -1,3 +1,39 @@
 .dashboard{
+    margin: 2vh 2vw;
+    width: 96vw;
+    height: 96vh;
+    display: grid;
+    background-color: $color_grey-light;
+
+    grid-template-columns: [d-start d-chart-start] minmax(max-content, 65vw) [d-chart-end d-table-start] minmax(max-content, 1fr) [d-table-end d-end]; 
+    grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] 60vh [d-chart-end] 1fr [d-end];
+    grid-column-gap: 3rem;
+    grid-row-gap: 2rem;
+    padding: 1rem 3rem 3rem 3rem;
     
+}
+
+.menu{
+    grid-column: d-start / d-end;
+    grid-row: d-header-start / d-header-end;
+}
+
+.chart{
+    grid-column: d-chart-start / d-chart-end;
+    grid-row: d-chart-start / d-chart-end;
+}
+
+.dataTable{
+    grid-column: d-table-start / d-table-end;
+    grid-row: d-chart-start / d-chart-end;
+}
+
+.deviceInfo{
+    grid-column: d-table-start / d-table-end;
+    grid-row: d-chart-end / d-end;
+}
+
+.gauges{
+    grid-column: d-chart-start / d-chart-end;
+    grid-row: d-chart-end / d-end;
 }
