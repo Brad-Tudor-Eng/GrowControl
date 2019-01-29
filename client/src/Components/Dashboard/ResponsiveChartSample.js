@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Styles/responsiveCharts.css'
 
 import {AreaChart, Area, XAxis, YAxis, Tooltip} from 'recharts'
 
@@ -54,12 +55,12 @@ class Chart extends Component {
         className="chart card"
         ref={this.saveRef}
       >
-        <AreaChart width={width*.95} height={height*.95} data={data}
+        <AreaChart width={width} height={height} data={data}
             margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-        <XAxis dataKey="name" stroke="#00a8f7" tickSize="15"/>
-        <YAxis stroke="#00a8f7" tickSize="15"/>
+        <XAxis dataKey="name"/>
+        <YAxis/>
         <Tooltip/>
-        <Area type='monotone' dataKey='uv' stroke='#00a8f7' fill='#1f1e1e' />
+        <Area type='monotone' dataKey='uv' stroke='#8884d8' fill='#8884d8' />
         </AreaChart>
 
       </div>

@@ -1,3 +1,7 @@
 .chart{
-    
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: $color_grey_dark;
+    font-size: 1.3rem;
 }
