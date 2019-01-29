@@ -1,11 +1,7 @@
 .landing{
-    display: grid;
     width: 100vw;
     height: 100vh;
     padding: 2rem;
-    grid-template-columns:
-    [landing-about-start] minmax( 28rem, 20vw ) [landing-center-start] 1fr [landing-center-end] minmax( 28rem, 20vw ) [landing-kits-end];
-
 }
 
 

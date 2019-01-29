@@ -1,11 +1,13 @@
 .landing_center{
-    grid-column: landing-center-start / landing-center-end;
-    
+
     display: grid;
     padding: 2rem;
     grid-template-columns: [signup] 1fr [signup-end] 1fr [login-end];
-    grid-template-rows: [center-top-spacing] 6vh [center-top-spacing-end] max-content [center-header-end] max-content [mushroom-end] max-content [center-buttons-end] 1fr [center-end];
+    grid-template-rows: [center-top-spacing] 3vh [center-top-spacing-end] max-content [center-header-end] max-content [mushroom-end] max-content [center-buttons-end] 1fr [center-end];
     grid-column-gap: 2rem;
+    width: 45vw;
+    margin: 0 auto;
+
 }
 
 .center-header{
@@ -23,6 +25,7 @@
 
 .logo{
     display: flex;
+    width: 100%;
     justify-content: center;
     grid-column: signup / login-end;
     grid-row: center-header-end / mushroom-end;
