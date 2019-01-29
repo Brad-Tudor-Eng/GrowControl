@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {  BrowserRouter, Route } from 'react-router-dom'
 
-import './Styles/Index.scss'
 
-import Landing      from './Landing/Landing'
-import Dashboard    from './Dashboard/Dashboard'
+
+import Landing      from "./Landing/Landing"
+import Dashboard    from "./Dashboard/Dashboard"
 
 class App extends Component {
 

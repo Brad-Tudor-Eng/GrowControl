@@ -1,7 +1,12 @@
-@import "base/animations";
-@import "base/base";
-@import "base/typography";
-@import "base/utilities";
+@import './base/base';
+@import './base/colors';
+@import './base/typography';
 
-@import "components/card";
-@import "components/authform"
+@import './Components/btn';
+@import './Components/card';
+@import './Components/mushroom';
+@import './Components/spinner';
+
+@import './Layout/authForm';
+@import './Layout/landing';
+@import './Layout/dashboard';

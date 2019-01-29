@@ -1,0 +1,10 @@
+.mushroom {
+
+    background: url('./Components/MushroomLogo.svg');
+    background-size: cover;
+
+    &_landing_center{
+        height: 100%;
+        width: 100%;
+    }
+}

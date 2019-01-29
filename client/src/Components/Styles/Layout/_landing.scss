@@ -1,0 +1,43 @@
+.landing{
+    margin: 2vh 2vw;
+    width: 96vw;
+    height: 96vh;
+    
+    &_center{
+        width: 40vw;
+        height: 100%;
+        margin: 0 auto;
+        padding: 3rem;
+        display: grid;
+        grid-template-columns: 
+        [center-start] 1fr [center-mid] 1fr [center-end] ;
+        grid-template-rows: 
+        [center-row-start] 6vh [center-logo-start] 60vh [center-logo-end] 3.5vh [center-button-end] 1fr [center-row-end];
+        grid-gap: 5vh;
+    }
+}
+
+.center{
+    &_header{
+        grid-column: center-start / center-end;
+        grid-row: center-row-start / center-logo-start;
+        text-align: center;
+    }
+
+    &_logo{
+        grid-column: center-start / center-end;
+        grid-row: center-logo-start / center-logo-end;
+        margin: .5vw;
+    }
+
+    &_signUp{
+        grid-column: center-start / center-mid;
+        grid-row: center-logo-end / center-button-end;
+    }   
+
+    &_login{
+        grid-column: center-mid / center-end;
+        grid-row: center-logo-end / center-button-end;
+    }
+
+}
