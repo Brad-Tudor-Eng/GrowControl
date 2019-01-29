@@ -1,2 +1,31 @@
+.H{
+    &_primary{
+        font-family: 'Kanit', sans-serif;
+        font-size: 7rem;
+        font-weight: 800i;
+        letter-spacing: .2rem;
+        background: -webkit-linear-gradient(0deg, $color_primary, $color_primary-dark);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-$color-header-primary: #333;
+    &_secondary{
+        font-family: 'Kanit', sans-serif;
+        font-size: 5rem;
+        font-weight: 800i;
+        letter-spacing: .2rem;
+        background: -webkit-linear-gradient(0deg, $color_grey-dark, $color_black);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.Table{
+    &_heading{
+
+    }
+
+    &_content{
+
+    }
+}

@@ -1,9 +1,18 @@
-@import "base/animations";
-@import "base/base";
-@import "base/mixins";
-@import "base/typography";
-@import "base/utilities";
+@import './base/base';
+@import './base/colors';
+@import './base/typography';
 
-@import "components/card";
-@import "components/authform";
+@import './Components/btn';
+@import './Components/card';
+@import './Components/mushroom';
+@import './Components/spinner';
 
+@import './components/chart';
+@import './components/dataTable';
+@import './components/deviceSettings';
+@import './components/menu';
+@import './components/deviceInfo';
+
+@import './Layout/authForm';
+@import './Layout/landing';
+@import './Layout/dashboard';

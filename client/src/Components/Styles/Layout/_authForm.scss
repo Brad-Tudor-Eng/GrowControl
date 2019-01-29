@@ -1,11 +1,12 @@
 .authForm{
-    grid-column: signup / login-end;
-    grid-row: center-header-end / mushroom-end;
+    grid-column: center-start / center-end;
+    grid-row: center-logo-start;
 
 padding: 3rem;
 padding-top: 1rem;
 display: flex;
 flex-direction: column;
+height: 35vh;
 
     &_close{
         font-family: 'Kanit', sans-serif;
