@@ -57,28 +57,30 @@ const LOGIN_USER = gql`
                 <h1 className="center_header H_primary">Grow Control</h1>
                   <div className="authForm card">
                       <span 
-                          className="authForm_close"
+                          className="authForm_close form_close"
                           onClick={()=>{this.props.setDisplay()}}
                       >X</span>
-                      <h2 className="authForm_header">Sign Up</h2>
+                      <h2 className="authForm_header H_secondary">Sign Up</h2>
                       
                       <input
                           id="email"
                           name="email"
+                          className="form_input"
                           value={this.state.email}
                           onChange={(event)=>{this.setState({email: event.target.value})}}
                           type="email"
                       ></input>
-                      <label htmlFor="email">Email</label>
+                      <label type="form_label" htmlFor="email">Email</label>
                       
                       <input
                           id="password"
                           name="password"
+                          className="form_input"
                           type="password"
                           value={this.state.password}
                           onChange={(event)=>{this.setState({password: event.target.value})}}
                       ></input>
-                      <label htmlFor="password">Password</label>
+                      <label type="form_label" htmlFor="password">Password</label>
                       
                       <Mutation mutation={LOGIN_USER} >
                       {(loginUser, { data }) => (

@@ -12,8 +12,33 @@
         grid-template-columns: 
         [center-start] 1fr [center-mid] 1fr [center-end] ;
         grid-template-rows: 
-        [center-row-start] 6vh [center-logo-start] 60vh [center-logo-end] 3.5vh [center-button-end] 1fr [center-row-end];
+        [center-row-start] max-content [center-logo-start] 60vh [center-logo-end] max-content [center-button-end] 1fr [center-row-end];
         grid-gap: 5vh;
+
+
+        @include respond('lg-tab'){
+            margin-top: 9vh;
+            grid-template-rows: 
+            [center-row-start] max-content [center-logo-start] 45vh [center-logo-end] max-content [center-button-end] 1fr [center-row-end];
+            width: 60vw;
+            grid-gap: 2vh;
+        }
+
+        @include respond('med-phone'){
+            margin-top: 9vh;
+            grid-template-rows: 
+            [center-row-start] max-content [center-logo-start] 45vh [center-logo-end] max-content [center-button-end] 1fr [center-row-end];
+            width: 80vw;
+            grid-gap: 2vh;
+        }
+
+        @include respond('sm-phone'){
+            grid-template-rows: 
+            [center-row-start] max-content [center-logo-start] 50vh [center-logo-end] max-content [center-button-end] 1fr [center-row-end];
+            width: 90vw;
+            grid-gap: 1vh;
+        }
+
     }
 }
 
@@ -22,6 +47,7 @@
         grid-column: center-start / center-end;
         grid-row: center-row-start / center-logo-start;
         text-align: center;
+        
     }
 
     &_logo{

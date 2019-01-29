@@ -7,16 +7,65 @@
         background: -webkit-linear-gradient(0deg, $color_primary, $color_primary-dark);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+
+        @include respond('sm-phone'){
+            font-size: 4rem;
+        }
+
     }
 
     &_secondary{
         font-family: 'Kanit', sans-serif;
-        font-size: 5rem;
+        font-size: 6rem;
         font-weight: 800i;
         letter-spacing: .2rem;
         background: -webkit-linear-gradient(0deg, $color_grey-dark, $color_black);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        
+        @include respond('lg-tab'){
+            font-size: 5.5rem;
+        }
+
+        @include respond('lg-phone'){
+            font-size: 5rem;
+        }
+
+        @include respond('sm-phone'){
+            font-size: 3.5rem;
+        }
+    }
+}
+
+.form{
+
+    &_input{
+
+    }
+
+    &_label{
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgb(56, 56, 56);
+    }
+
+    &_close{
+        font-family: 'Kanit', sans-serif;
+        font-size: 2rem;
+        font-weight: 800i;
+        color: rgb(56, 56, 56);
+
+        @include respond('lg-tab'){
+            font-size: 3rem;
+        }
+
+        @include respond('lg-phone'){
+            
+        }
+
+        @include respond('sm-phone'){
+       
+        }
     }
 }
 

@@ -1,10 +1,14 @@
 .mushroom {
 
-    background: url('./Components/MushroomLogo.svg');
-    background-size: cover;
+    background-image: url(./components/MushroomLogo.svg);
+    background-size: contain;
+    background-repeat:no-repeat;
+    background-position: center center;
 
     &_landing_center{
         height: 100%;
         width: 100%;
     }
+
+
 }

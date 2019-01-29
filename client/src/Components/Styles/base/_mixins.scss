@@ -12,7 +12,7 @@
     }
 
     @if $breakpoint == med-phone {
-        @media only screen and (max-width: 50em) { @content };    //800px
+        @media only screen and (max-width: 55em) { @content };    //800px
     }
 
     @if $breakpoint == lg-phone {
@@ -20,7 +20,7 @@
     }
 
     @if $breakpoint == sm-tab {
-        @media only screen and (max-width: 75em) { @content };    //1200px
+        @media only screen and (max-width: 78.125em) { @content };    //1250px
     }
 
     @if $breakpoint == lg-tab {

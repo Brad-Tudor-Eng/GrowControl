@@ -6,13 +6,9 @@ padding: 3rem;
 padding-top: 1rem;
 display: flex;
 flex-direction: column;
-height: 35vh;
+height: 45vh;
 
     &_close{
-        font-family: 'Kanit', sans-serif;
-        font-size: 2rem;
-        font-weight: 800i;
-        color: rgb(56, 56, 56);
         align-self: flex-end;
         cursor: pointer;
         &:hover{
@@ -31,7 +27,6 @@ height: 35vh;
         border: .25rem solid rgb(0, 168, 247);
         border-radius: .5rem;
         
-        
         &:focus{
             outline: none;
         }
@@ -41,35 +36,53 @@ height: 35vh;
         display: inline-block;
         width: .5rem;
         transform: translateY(-4rem) translateX(.5rem);
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: rgb(56, 56, 56);
     }
 
     & input:focus + label,
     & input:not([value=""]) + label
     {
         transform: translateY(-7.5rem);
+
+
     }
-
-
 
     & input:invalid{
         background-color: rgba(255, 60, 0, 0.2);
     }
 
-
-
-
     & h2{
         text-align: center;
-        font-family: 'Kanit', sans-serif;
-        font-size: 6rem;
-        font-weight: 800i;
-        letter-spacing: .1rem;
-        background: -webkit-linear-gradient(90deg, rgb(85, 85, 85),rgb(20, 20, 20));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    }
+
+}
+
+
+@include respond('sm-tab'){
+    .authForm{
         
+        & input:focus + label,
+        & input:not([value=""]) + label
+        {
+            transform: translateY(-6.5rem);
+        }
     }
 }
+
+@include respond('lg-phone'){
+
+    .authForm{
+        height: 55vh;
+
+        & label{
+            transform: translateY(-3.5rem) translateX(.5rem);
+        }
+
+        & input:focus + label,
+        & input:not([value=""]) + label
+        {
+            transform: translateY(-6.5rem);
+        }
+    }
+
+}
+
