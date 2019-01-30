@@ -1,7 +1,26 @@
 .chart{
+    padding: 2rem;
     display: flex; 
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: $color_grey_dark;
     font-size: 1.3rem;
+
+    &_controls{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        margin: 3rem 1rem 0rem 1rem;
+
+        & > *{
+            width: 15%;
+        }
+    }
+}
+
+.graph{
+    width: 100%;
+    height: 100%;
 }

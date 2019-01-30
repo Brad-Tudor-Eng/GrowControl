@@ -1,3 +1,49 @@
 .dataTable{
-    
+    padding: 0 2rem 0 2rem;
+    background-color: $color_white;
+    overflow: hidden;
+    &_header{
+        text-align: center;
+    }
+
+    &_body{
+
+        padding-bottom: 2rem;
+
+        &_label{
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        &_data{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            border-bottom: 2px solid $color_primary;
+            border-left: 2px solid $color_primary;
+            margin: 1rem 0;
+        }
+
+        &-time{
+            width: 5.5rem;
+            
+        }
+
+        &-light{
+            width: 6rem;
+        }
+
+        &-temp{
+            width: 6rem;
+        }
+
+        &-humidity{
+            width: 10rem;
+        }
+
+        &-moisture{
+            width: 10rem;
+        }
+    }
 }

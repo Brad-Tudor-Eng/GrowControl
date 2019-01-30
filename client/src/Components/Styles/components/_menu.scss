@@ -1,0 +1,59 @@
+.menu{
+    padding: 1rem;
+    grid-row: d-header-start / d-header-end;
+    grid-column: d-start / d-end;
+    width: 5rem;
+    display: flex;
+    align-items: center;
+
+
+    border: .5rem solid $color_primary;
+    border-radius: .3rem;
+    background-color: white;
+
+    transition: all .5s;
+
+    &_bar-1,&_bar-2,&_bar-3{
+        height: .01rem;
+        width: 3rem;
+        border: .2rem solid $color_grey_dark;
+        border-radius: .5rem;
+        margin: .5rem 0rem;
+        transition: all .5s;
+    }
+
+    &_btn{
+        background-color: white;
+        width: 4rem;
+        margin-left: auto;
+        transform: translateX(-.5rem);
+        transition: all .5s;
+    }
+
+    &_links{
+        width: 0;
+        height: 2.5rem;
+        font-size: 2rem;
+        overflow: hidden;
+        transition: all .8s;
+    }
+
+}
+
+.menu.expanded{
+    background-color: white;
+    width: 100%;
+}
+
+.menu_links.expanded{
+    width: 100%;
+
+    & > *{
+        display: inline-block;
+        margin-right: 5rem;
+    }
+}
+
+.menu_btn.expanded{
+  
+}
