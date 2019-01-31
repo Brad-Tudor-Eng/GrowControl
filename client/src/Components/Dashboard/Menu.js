@@ -33,17 +33,18 @@ class Menu extends Component {
             return (
 
 
-                <div className= {`menu ${this.state.expanded}`}>
+                <div onClick={this.compress} className= {`menu ${this.state.expanded}`}>
                     <div className={`menu_links ${this.state.expanded}`}>
+                        <p onClick={()=>{this.displayMenu("deviceMenu")}}>Logout</p>
                         <p onClick={()=>{this.displayMenu("deviceMenu")}}>Device Menu</p>
                         <p onClick={()=>{this.displayMenu("userAccount")}}>User Account</p>
                     </div>
                     <div 
                     className={`menu_btn ${this.state.expanded}`}
-                    onClick={this.compress}>
-                        <div onClick={this.compress} className="menu_bar-1"></div>
-                        <div onClick={this.compress} className="menu_bar-2"></div>
-                        <div onClick={this.compress} className="menu_bar-3"></div>
+                    >
+                        <div  className="menu_bar-1"></div>
+                        <div  className="menu_bar-2"></div>
+                        <div  className="menu_bar-3"></div>
                     </div>
                 </div>
 

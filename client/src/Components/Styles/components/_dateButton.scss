@@ -18,7 +18,13 @@ cursor: pointer;
         border-radius: .25rem;
         background-color: white;
         transition: all .2s ease;
+
+        & > i{
+            padding-left: 1rem;
+        }
     }
+
+
 
     &_center.expanded{
         left: 0rem;
@@ -30,7 +36,7 @@ cursor: pointer;
     }
 
     &_item{
-        padding: .08rem .4rem;
+        padding: .08rem 2.5rem;
         &:hover{
             background-color: $color_primary;
             color: white;

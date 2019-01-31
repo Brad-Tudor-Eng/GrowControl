@@ -28,6 +28,7 @@
         margin-left: auto;
         transform: translateX(-.5rem);
         transition: all .5s;
+        cursor: pointer;
     }
 
     &_links{
@@ -51,9 +52,7 @@
     & > *{
         display: inline-block;
         margin-right: 5rem;
+        cursor: pointer;
     }
 }
 
-.menu_btn.expanded{
-  
-}
