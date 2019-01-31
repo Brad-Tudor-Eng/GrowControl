@@ -8,6 +8,7 @@ class Menu extends Component {
 
     state={
         expanded: null
+        
     }
 
   compress = (e) => {
@@ -18,14 +19,24 @@ class Menu extends Component {
     }
     
   }
+
+  displayMenu = (menu) => {
+    this.props.setMenu(menu)
+    this.props.setModal()
+  }
+
+
     render(){
+
+        
+
             return (
 
 
                 <div className= {`menu ${this.state.expanded}`}>
                     <div className={`menu_links ${this.state.expanded}`}>
-                        <p>Device Menu</p>
-                        <p>User Account</p>
+                        <p onClick={()=>{this.displayMenu("deviceMenu")}}>Device Menu</p>
+                        <p onClick={()=>{this.displayMenu("userAccount")}}>User Account</p>
                     </div>
                     <div 
                     className={`menu_btn ${this.state.expanded}`}

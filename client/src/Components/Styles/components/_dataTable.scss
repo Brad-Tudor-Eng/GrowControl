@@ -1,14 +1,15 @@
 .dataTable{
-    padding: 0 2rem 0 2rem;
+    
     background-color: $color_white;
     overflow: hidden;
+    position: relative;
     &_header{
         text-align: center;
     }
 
     &_body{
-
-        padding-bottom: 2rem;
+        padding: 0 2rem 0 2rem;
+        overflow: hidden;
 
         &_label{
             display: flex;
@@ -45,5 +46,15 @@
         &-moisture{
             width: 10rem;
         }
+    }
+
+    &_spacer{
+        position: absolute;
+        top: 95%;
+        width: 100%;
+        height: 5%;
+        z-index: 5;
+        background-image: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,1));
+        
     }
 }

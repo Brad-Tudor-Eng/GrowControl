@@ -3,16 +3,18 @@
 @import './base/colors';
 @import './base/typography';
 
-@import './Components/btn';
-@import './Components/card';
-@import './Components/mushroom';
-@import './Components/spinner';
+@import './components/btn';
+@import './components/card';
+@import './components/mushroom';
+@import './components/spinner';
 
 @import './components/chart';
 @import './components/dataTable';
 @import './components/gauges';
 @import './components/menu';
 @import './components/deviceInfo';
+
+@import './components/modal';
 
 @import './Layout/authForm';
 @import './Layout/landing';

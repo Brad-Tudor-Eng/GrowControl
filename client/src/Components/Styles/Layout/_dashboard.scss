@@ -1,9 +1,11 @@
 .dashboard{
+    position: relative;
     margin: 2vh 2vw;
     width: 96vw;
     height: 96vh;
     display: grid;
     background-color: $color_grey-light;
+    overflow: hidden;
 
     grid-template-columns: [d-start d-chart-start] minmax(max-content, 65vw) [d-chart-end d-table-start] minmax(max-content, 1fr) [d-table-end d-end]; 
     grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] 60vh [d-chart-end] 1fr [d-end];
