@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Graph from './Graph'
-
+import DateButton from './DateButton'
 
 class Chart extends Component {
 
@@ -40,7 +40,7 @@ class Chart extends Component {
       <div className="chart card">
         <Graph />
         <div className="chart_controls">
-        <button className="btn_secondary"><span className="btn_secondary-center">01/30/2019  <i class="fas fa-chevron-up"></i></span></button>
+        <DateButton />
         {this.renderButtons()}
         </div>
       </div>

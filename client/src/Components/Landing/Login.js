@@ -65,22 +65,22 @@ const LOGIN_USER = gql`
                       <input
                           id="email"
                           name="email"
-                          className="form_input"
+                          className="authForm_input form_input"
                           value={this.state.email}
                           onChange={(event)=>{this.setState({email: event.target.value})}}
                           type="email"
                       ></input>
-                      <label type="form_label" htmlFor="email">Email</label>
+                      <label type="authForm_label form_label" htmlFor="email">Email</label>
                       
                       <input
                           id="password"
                           name="password"
-                          className="form_input"
+                          className="authForm_input form_input"
                           type="password"
                           value={this.state.password}
                           onChange={(event)=>{this.setState({password: event.target.value})}}
                       ></input>
-                      <label type="form_label" htmlFor="password">Password</label>
+                      <label type="authForm_label form_label" htmlFor="password">Password</label>
                       
                       <Mutation mutation={LOGIN_USER} >
                       {(loginUser, { data }) => (

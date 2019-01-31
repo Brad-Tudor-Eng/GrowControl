@@ -11,6 +11,10 @@
         outline: none;
         cursor: pointer;
 
+        &--del{
+            background-color: $color_red;
+        }
+
         @include respond('sm-tab'){
             font-size: 3rem;
         }
@@ -26,6 +30,12 @@
                 border-radius: .25rem;
                 background-color: white;
                 transition: all .2s ease;
+
+                &--del{
+                    &:hover{
+                        color: $color_warning;
+                    }
+                }
 
                 @include respond('sm-phone'){
                     padding: 0 1rem;

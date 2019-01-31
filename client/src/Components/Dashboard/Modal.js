@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ModifyUser from './ModifyUser'
 
 class Modal extends Component {
 
@@ -12,7 +13,7 @@ class Modal extends Component {
 
     renderForm = () => {
         switch (this.props.menu) {
-            case "userAccount": return "User Account"
+            case "userAccount": return <div><ModifyUser /></div>
             case "deviceMenu": return "Device Menu"
             default: return null
         }

@@ -16,21 +16,17 @@
         flex-direction: column;
         background-color: $color_white;
         transform: translateY(-20%);
-
         padding: 2rem;
-    
     }
 
     &_header{
         display: flex;
         justify-content: center;
         text-align: center;
+        line-height: 4rem;
+        margin-bottom: 1.5rem;
     }
 
-    &_body{
-        width: 50rem;
-        height: 50rem;
-    }
 
 }
 
@@ -42,4 +38,5 @@
     &:hover{
         transform: translateY(-.2rem) scale(1.15);
     }
+    z-index: 102;
 }

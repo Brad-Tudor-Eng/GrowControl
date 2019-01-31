@@ -22,6 +22,7 @@
         background: -webkit-linear-gradient(0deg, $color_grey-dark, $color_black);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+
         
         @include respond('lg-tab'){
             font-size: 5.5rem;
