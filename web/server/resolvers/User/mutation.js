@@ -1,16 +1,16 @@
 import User from '../../models/User'
 import { ObjectID } from 'mongodb'
 
-//  create a new user       [x]
+
+//  create a new user       [x]         
 //  update a user email     [x]
 //  update a user password  []
 //  delete a user           [x]
 
 
-export const createUser = async (parent, {data}, ctx, info)=>{
+export const createUser = async (parent, {data}, {req,res}, info)=>{
+    console.log(req)
     
-    const user = await User.create({ ...data })
-    return user
 }
 
 export const updateUser = async (parent, {data}, ctx, info)=>{
