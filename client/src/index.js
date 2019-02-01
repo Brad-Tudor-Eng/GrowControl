@@ -16,7 +16,6 @@ import './Components/Styles/index.scss'
 
 import App from './Components/App'
 
-
 // Create an http link:
 const httpLink = new HttpLink({
     uri: 'http://localhost:8080/gql'

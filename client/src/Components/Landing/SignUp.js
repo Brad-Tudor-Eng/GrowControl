@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { graphql } from 'react-apollo'
+
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import { connect } from 'react-redux'
+import Cookies from 'js-cookie'
 
 
 import actions from "../../Actions"
@@ -13,6 +16,7 @@ const CREATE_USER = gql`
       id
       name
       email
+      token
     }
   }
 `;
@@ -99,11 +103,20 @@ const CREATE_USER = gql`
                       ></input>
                       <label type="form_label" htmlFor="name_input">Name</label>
                       <Mutation 
-                      mutation={CREATE_USER} 
-                      update={(cache, { data })=>{
-                        // set the user data
-                        this.props.history.push('/dashboard')
-                      }}
+                      mutation={CREATE_USER}
+                      onCompleted={(data)=>{
+                        
+                        //if authenticated
+                        if(data.createUser.token){
+                          const token = data.createUser.token
+                          Cookies.set("auth", token)
+                          this.props.history.push('/dashboard')
+                        }else{
+                          //set error message
+                          this.setState({loading: false})
+                        }
+
+                      }} 
                       >
                       {(createUser, { data }) => {              
                           return (

@@ -1,4 +1,6 @@
 import User from '../../models/User'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 import { ObjectID } from 'mongodb'
 
 
@@ -7,10 +9,29 @@ import { ObjectID } from 'mongodb'
 //  update a user password  []
 //  delete a user           [x]
 
+// jwt.verify(token, process.env.JWT_KEY)
 
-export const createUser = async (parent, {data}, {req,res}, info)=>{
-    console.log(req)
-    
+export const createUser = async (parent, {data}, {req, auth}, info)=>{
+    //check to see if user exists
+
+    // cleanse input
+
+    // validate password
+    const {password} = data
+    if(password.length < 5){throw new Error('password must be 8 chr or longer')}
+    //if valid hash
+    var hash = bcrypt.hashSync(password, 10);
+    //create a new user
+    const user = new User({...data,token:"" ,password: hash})
+    //save user
+    const newUser = await user.save()
+    //login user
+    //create a token for the user
+    const token = jwt.sign({id: user._id},process.env.JWT_KEY,{ expiresIn: 30 * 24 * 60 * 60 })
+
+    const test = await User.findByIdAndUpdate(ObjectID(newUser._id),{$set: {token}},{new: true})
+
+    return test
 }
 
 export const updateUser = async (parent, {data}, ctx, info)=>{

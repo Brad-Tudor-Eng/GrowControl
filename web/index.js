@@ -1,14 +1,11 @@
 import { GraphQLServer, PubSub }    from 'graphql-yoga'
 
-
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-
-
 import mongoose                     from 'mongoose'
 import Query                        from './server/resolvers/Query'
 import Mutation                     from './server/resolvers/Mutation'
 import Subscription                 from './server/resolvers/Subscription'
+import cookieParser                 from 'cookie-parser'
+import bodyParser                   from 'body-parser'
 
 import cors                         from 'cors'
 
@@ -27,22 +24,19 @@ const server = new GraphQLServer({
         Mutation,
         Subscription
     },
-    context:(req)=>{
+    context:(ctx)=>{
+        let user = ctx.request.body.data.token ? ctx.request.body.data.token : null ;
         return {
-        res: req.res,
-        req: req.request,
+        req: ctx.request,
+        auth: { user },    
         pubsub
     }
 }
 })
 
-const app = server.express
-
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(cookieParser())
-app.use(cors())
-
-
+server.use(cookieParser())
+server.use(bodyParser.urlencoded({extended: false}))
+server.use( cors() )
 
 const gqlEndpoint = '/gql'
 const gqlsubscribe = '/subscribe'
@@ -53,8 +47,6 @@ const options = {
     subscriptions: gqlsubscribe,
     playground: gqlEndpoint
 }
-
-
 
 server.start( options, ()=>{
     console.log('server has started')

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({
     name: String,
     email: String,
+    token: String,
     device: [{
         type: Schema.Types.ObjectId,
         ref: 'device'

@@ -117,6 +117,7 @@ type User {
     id: ID!
     name: String!
     email: String!
+    token: String
     device: [Device]
 }
 
