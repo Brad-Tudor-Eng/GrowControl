@@ -12,7 +12,10 @@ const UserSchema = new Schema({
     password: String
 })
 
-
+UserSchema.pre('save', async function(){
+    const user = this
+    console.log(user)
+})
 
 const User = mongoose.model('user', UserSchema)
 

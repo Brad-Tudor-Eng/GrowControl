@@ -6,8 +6,9 @@ import Mutation                     from './server/resolvers/Mutation'
 import Subscription                 from './server/resolvers/Subscription'
 import cookieParser                 from 'cookie-parser'
 import bodyParser                   from 'body-parser'
-
 import cors                         from 'cors'
+
+import verifyToken                  from './server/services/verifyToken'
 
 require('dotenv').config()
 require('./server/broker/index')
@@ -25,7 +26,8 @@ const server = new GraphQLServer({
         Subscription
     },
     context:(ctx)=>{
-        let user = ctx.request.body.data.token ? ctx.request.body.data.token : null ;
+        //check token if token verify and set to context else user = null
+        let user = ctx.request.body.data.token ? verifyToken(ctx.request.body.data.token) : null ;
         return {
         req: ctx.request,
         auth: { user },    
