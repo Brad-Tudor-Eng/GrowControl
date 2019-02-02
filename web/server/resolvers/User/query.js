@@ -1,18 +1,17 @@
-import db from 'mongodb'
+import { ObjectID } from 'mongodb'
 import User from '../../models/User'
+import jwt from 'jsonwebtoken'
 
-
-export const user = async (parent, {data}, ctx, info) =>{
-//find a user by ID or Email
-    const {userId: id, email} = data
-    let user
-
-    if(id){
-         user =  await User.findById(db.ObjectID(id))
-    }else if(email){
-         user =  await User.findOne({email}).populate('device')
+export const findUser = async (parent, {data}, ctx, info) =>{
+    let token = data.token
+    token = jwt.verify(token, process.env.JWT_KEY)
+    const id = ObjectID(token.id)
+    const user = await User.findById(id).populate('device')
+    if(user){
+        return user
+    }else{
+        throw new Error('Invalid Token')
     }
-
-    return user
+    return null
 }
 

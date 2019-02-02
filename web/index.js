@@ -26,10 +26,8 @@ const server = new GraphQLServer({
         Subscription
     },
     context:(ctx)=>{
-        let data = ctx.request.body.variables.data
         return {
         req: ctx.request,
-        auth: {user: verifyToken(data)},  
         pubsub
     }
 }
