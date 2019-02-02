@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux'
+import User from './User'
 
 export default combineReducers({
-    default: ()=>'a'
+    user: User,
+    device: ()=>'a',
+    records: ()=>'b',
+    tableData: ()=>'c'
 })

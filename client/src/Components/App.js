@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {  BrowserRouter, Route } from 'react-router-dom'
 
+import requiresAuth from './General/RequiresAuth'
+
 
 
 import Landing      from "./Landing/Landing"
@@ -16,7 +18,7 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         <Route path="/" exact component={Landing}/>
-                        <Route path="/Dashboard" exact component={Dashboard}/>
+                        <Route path="/Dashboard" exact component={ requiresAuth(Dashboard) }/>
                     </div>
                 </BrowserRouter>
             </div>

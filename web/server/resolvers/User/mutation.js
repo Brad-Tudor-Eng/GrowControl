@@ -3,15 +3,27 @@ import authService from '../../services/authService'
 import { ObjectID } from 'mongodb'
 
 
-//  create a new user       [x]         
-//  update a user email     [x]
+//  create a new user       [x]
+//  log a user in           []
+//  log a user out          []
+
+//  update a user email     []
 //  update a user password  []
-//  delete a user           [x]
+//  delete a user           []
 
 // jwt.verify(token, process.env.JWT_KEY)
 
-export const createUser = async (parent, {data}, {req, auth}, info)=>{
-    return authService.signUp({data,auth})
+export const createUser = async (parent, {data}, { req }, info)=>{        
+         return authService.signUp(data)
+}
+
+export const loginUser = async (parent, {data}, { req }, info)=>{ 
+    return authService.login(data)
+}
+
+export const logout = async (parent, {data}, { req }, info)=>{
+    
+    return authService.logOut(data)
 }
 
 export const updateUser = async (parent, {data}, ctx, info)=>{

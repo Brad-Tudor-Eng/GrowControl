@@ -109,3 +109,10 @@
 .menu{
     color: $color_grey_dark;
 }
+
+.error{
+    color: red;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 2rem;
+}

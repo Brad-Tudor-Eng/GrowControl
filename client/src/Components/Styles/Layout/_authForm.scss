@@ -6,7 +6,7 @@ padding: 3rem;
 padding-top: 1rem;
 display: flex;
 flex-direction: column;
-height: 45vh;
+height: 30vh;
 
     &_close{
         align-self: flex-end;
@@ -71,7 +71,7 @@ height: 45vh;
 @include respond('lg-phone'){
 
     .authForm{
-        height: 55vh;
+        height: 40vh;
 
         & label{
             transform: translateY(-3.5rem) translateX(.5rem);

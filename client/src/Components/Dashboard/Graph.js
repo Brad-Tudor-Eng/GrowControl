@@ -56,10 +56,10 @@ class Graph extends Component {
         >
           <AreaChart width={width} height={height} data={data}
               margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-          <XAxis dataKey="name" stroke="#00a8f7" tickSize="15"/>
-          <YAxis stroke="#00a8f7" tickSize="15"/>
-          <Tooltip/>
-          <Area type='monotone' dataKey='uv' stroke='#00a8f7' fill='#1f1e1e' />
+            <XAxis dataKey="name" stroke="#00a8f7" tickSize={15}/>
+            <YAxis stroke="#00a8f7" tickSize={15}/>
+            <Tooltip/>
+            <Area type='monotone' dataKey='uv' stroke='#00a8f7' fill='#1f1e1e' />
           </AreaChart>
         </div>
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import Logout from './LogoutButton'
 
 //This component executes the mutation for updating
 //The device settings
@@ -35,7 +35,7 @@ class Menu extends Component {
 
                 <div onClick={this.compress} className= {`menu ${this.state.expanded}`}>
                     <div className={`menu_links ${this.state.expanded}`}>
-                        <p onClick={()=>{this.displayMenu("deviceMenu")}}>Logout</p>
+                        <Logout />
                         <p onClick={()=>{this.displayMenu("deviceMenu")}}>Device Menu</p>
                         <p onClick={()=>{this.displayMenu("userAccount")}}>User Account</p>
                     </div>

@@ -10,12 +10,17 @@ import Menu from './Menu'
 import Modal from './Modal'
 
 
+// on loading fetch user devices and records
+
+
+
 class Dashboard extends Component {
 
     state={
         showModal: false,
         menu: null
     }
+
 
     setModal = () => {
         const showModal = !this.state.showModal    

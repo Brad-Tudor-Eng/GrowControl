@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { graphql } from 'react-apollo'
 
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import { connect } from 'react-redux'
 import Cookies from 'js-cookie'
-
+import Spinner from '../General/Spinner'
 
 import actions from "../../Actions"
 
@@ -14,7 +13,6 @@ const CREATE_USER = gql`
   mutation createUser($data: CreateUserInput!) {
     createUser(data: $data) {
       id
-      name
       email
       token
     }
@@ -27,38 +25,52 @@ const CREATE_USER = gql`
   state = {
     email: "",
     password: "",
-    name: "",
     loading: false,
-    data: null
+    errorMsg: null
   }
 
-    loadingBtn = ({createUser}) =>{
 
+    handleClick = (createUser)=>{
+      const{email, password, loading} = this.state
+      
+      //check to see if the inputs exist
+      if(email!=="" && password!=="" && !loading){
+        this.setState({loading: true})
+
+        createUser({ variables: { 
+          data: {
+              email: this.state.email,
+              password: this.state.password
+            } 
+          } 
+        })
+      
+      }else{
+        this.setState({errorMsg: "please check inputs"})
+      }
+    }
+
+
+    loadingBtn = ({createUser}) =>{
       if(this.state.loading){
-        return(
-          <div className="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        )
+        return( <Spinner /> )
       }else{
         return (
-          <button className="btn_primary"
-          onClick={ ()=>{
-            this.setState({loading: true})
-            createUser({ variables: { 
-              data: {
-                  email: this.state.email,
-                  name: this.state.name,
-                  password: this.state.password
-                } 
-              } 
-            })
-            
-          }}
-          
-        >
-          <span className="btn_primary-center">Submit</span>
-        </button>
+          <div>
+            <button className="btn_primary" 
+              onClick={ ()=>{ this.handleClick(createUser) }} >
+              <span className="btn_primary-center">Submit</span>
+            </button>
+            <p className="error">{this.state.errorMsg}</p>
+          </div>
         )
       }
+    }
+
+    setError = (error) => {
+      const msg = error.message.slice(error.message.indexOf(":")+2)
+      Cookies.remove("xAuthG")
+      this.setState({errorMsg: msg, loading: false, email: "", password: ""})
     }
 
     
@@ -95,30 +107,27 @@ const CREATE_USER = gql`
                       ></input>
                       <label type="form_label" htmlFor="password">Password</label>
                       
-                      <input
-                          name="name_input"
-                          className="form_input"
-                          value={this.state.name}
-                          onChange={(event)=>{this.setState({name: event.target.value})}}
-                      ></input>
-                      <label type="form_label" htmlFor="name_input">Name</label>
                       <Mutation 
                       mutation={CREATE_USER}
+                      onError={(error)=>{
+                        this.setError(error)
+                      }}
                       onCompleted={(data)=>{
-                        
                         //if authenticated
                         if(data.createUser.token){
                           const token = data.createUser.token
-                          Cookies.set("auth", token)
+                          Cookies.set("xAuthG", token)
+                          this.props.signUp(data.createUser)
                           this.props.history.push('/dashboard')
                         }else{
                           //set error message
-                          this.setState({loading: false})
+                          this.setState({loading: false,})
                         }
 
                       }} 
                       >
-                      {(createUser, { data }) => {              
+                      {(createUser, { data }) => {  
+                        
                           return (
                           <div>
                             { this.loadingBtn({createUser}) }
@@ -134,12 +143,5 @@ const CREATE_USER = gql`
 
 };
 
-const mapStateToProps=(state)=>{
-  return {
-    state
-  }
-}
 
-
-
-export default connect(mapStateToProps,  actions )(withRouter(SignUp))
+export default connect(null,  actions )(withRouter(SignUp))

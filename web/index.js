@@ -26,11 +26,10 @@ const server = new GraphQLServer({
         Subscription
     },
     context:(ctx)=>{
-        //check token if token verify and set to context else user = null
-        let user = ctx.request.body.data.token ? verifyToken(ctx.request.body.data.token) : null ;
+        let data = ctx.request.body.variables.data
         return {
         req: ctx.request,
-        auth: { user },    
+        auth: {user: verifyToken(data)},  
         pubsub
     }
 }

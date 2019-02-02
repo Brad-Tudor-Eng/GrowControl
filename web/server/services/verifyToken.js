@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken'
 
-export default (token) => {
+export default (data) => {
+  const test = data.hasOwnProperty('token')
+
+  if(test){
     try {
       
         decoded = jwt.verify(token, process.env.JWT_KEY);
@@ -9,4 +12,9 @@ export default (token) => {
       } catch(err) {
         return null
       }
+  }else{
+    return null
+  }
+
+
 }

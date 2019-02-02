@@ -8,7 +8,8 @@ import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux'
 import reducer from './Reducers'
 
@@ -44,7 +45,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const store = createStore(reducer)
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(), ));
 
 ReactDOM.render(
     <ApolloProvider client={client}>

@@ -2,12 +2,23 @@ import React, {Component} from 'react'
 
 import SignUp from './SignUp'
 import Login from './Login'
+import Cookies from 'js-cookie'
+import { withRouter } from 'react-router-dom'
+
 
 class Landing extends Component{
 
     state={
         display: "landing"
     }
+
+    componentDidMount(){
+        if(Cookies.get('xAuthG')){
+            this.props.history.push('/Dashboard')
+        }
+    }
+
+
 
     landing = () => (
 
@@ -61,4 +72,4 @@ class Landing extends Component{
 
 }
 
-export default Landing
+export default withRouter(Landing)

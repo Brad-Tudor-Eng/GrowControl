@@ -22,7 +22,8 @@ class Chart extends Component {
             "btn_secondary btn_secondary_selected":
             "btn_secondary";
       return (
-      <button 
+      <button
+        key={label} 
         onClick={this.setSelected}
         id={label}
         className={buttonClass}
