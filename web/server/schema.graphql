@@ -14,11 +14,9 @@ type Mutation {
     logout(data: LogoutUserInput): User
 
     updateUser(data: UpdateUserInput): User!
-    addDeviceToUser(data: AddDeviceToUserInput): User!
     deleteUser(data: DeleteUserInput): User
 
-
-    addDevice(data: AddDeviceInput): Device
+    addDeviceToUser(data: AddDeviceToUserInput): Device!
     updateDevice(data: UpdateDeviceInput): Device
     deleteDevice(data: DeleteDeviceInput): Device
 }
@@ -59,16 +57,14 @@ input DeleteUserInput{
     userId: ID!
 }
 
-input AddDeviceToUserInput{
-    userId: ID!
-    deviceId: ID!
-}
+
 
 #_______________-Device-_____________________#
 
-input AddDeviceInput{
-    name: String!
+input AddDeviceToUserInput{
     userId: ID!
+    deviceName: String!
+    token: String!
 }
 
 input UpdateDeviceInput{

@@ -1,5 +1,7 @@
 import Device from '../../models/Device'
+import User from '../../models/User'
 import { ObjectID } from 'mongodb'
+import jwt from 'jsonwebtoken'
 
 //   Add a device to the database [x]
 //   Update Device Settings [x]
@@ -11,23 +13,6 @@ const defaultSettings = {
     temp: {average: 0, tol: 0},
     humidity: {average: 0, tol: 0},
     moisture: {average: 0, tol: 0}
-}
-
-export const addDevice = async (parent, {data}, ctx, info) => {
-    let { name, userId } = data
-    
-    userId ? userId = ObjectID(userId) : userId;
-
-    const deviceProperties = {
-        dev_name: name,
-        user: userId,
-        settings: defaultSettings,
-        records: []
-    }
-
-    const d = await Device.create({...deviceProperties})
-    const device = await Device.findById( d._id ).populate('user')
-    return device
 }
 
 
@@ -50,6 +35,48 @@ export const updateDevice = async (parent, {data}, ctx, info) => {
         {new: true}).populate('user')
     
     return device
+}
+
+export const addDeviceToUser = async (parent, {data}, ctx, info) =>{
+    //verify the user
+    const verify = jwt.verify(data.token, process.env.JWT_KEY)  
+    if(verify){
+        let {deviceName, userId} = data
+        userId = ObjectID(userId)
+        //find the user in the database
+        let user = await User.findById(userId).populate('device')
+        //check to see if the user has a device with the same name
+        let exists = user.device.find((device)=>{
+            return deviceName === device.dev_name
+        })
+
+        if(!exists){
+            // create a new device for the user
+            let newDev = new Device({
+                
+                    dev_name: deviceName,
+                    user: userId,
+                    settings: { light: { average: 700, tol: 5}, 
+                                temp: { average: 75, tol: 5 }, 
+                                humidity: { average: 85, tol: 5 }, 
+                                moisture: { average: 75, tol: 5 }
+                              },
+                    records: [ ]
+                }
+            )
+            //save the device to the database
+                await newDev.save()
+            //save the user to the database
+                user.device.push(newDev._id)
+                await user.save()
+            //return new device
+            return newDev
+        }else{
+            throw new Error('device already exists')
+        }
+    }else{
+        throw new Error('unverified request')
+    }
 }
 
 export const deleteDevice = async (parent, {data}, ctx, info) => {

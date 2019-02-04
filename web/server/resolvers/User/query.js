@@ -8,6 +8,15 @@ export const findUser = async (parent, {data}, ctx, info) =>{
     const id = ObjectID(token.id)
     const user = await User.findById(id).populate('device')
     if(user){
+    /*
+        if the user has a device
+        find all records
+        keep first record,
+        return just the dates for all other records.
+    */
+
+
+
         return user
     }else{
         throw new Error('Invalid Token')
