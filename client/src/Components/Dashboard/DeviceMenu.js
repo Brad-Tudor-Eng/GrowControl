@@ -93,6 +93,7 @@ class DeviceMenu extends Component {
         //fetch the device from state
              const devices = this.props.devices.devices
              const device = devices[devName]
+             console.log(device)
              if(device.records.length > 0){
                  const records = device.records
                  this.props.setDeviceRecords(records)

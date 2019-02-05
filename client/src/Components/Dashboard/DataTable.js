@@ -1,21 +1,23 @@
-import React from 'react'
-
+import React, {useEffect} from 'react'
+import { connect } from 'react-redux'
 //This component shows the last 10 readings
 //live data stream
 
 
 
-const DataTable = () => {
+const DataTable = (props) => {
 
-    const data = [
-        { time: "15:01:06", light: 416, temp: 75, humidity: 227, moisture: 60,},
-        { time: "15:02:06", light: 500, temp: 76, humidity: 227, moisture: 60,},
- 
-]
+    useEffect(()=>{
+
+    },[props.today])
 
     const renderBody = (data) => {
 
         let reversedData = []
+
+        if(!data){
+            return <h2 className="P">Not Active...</h2>
+        }
 
         for (let i=data.length -1; i >= 0; i--) {
             reversedData.push(data[i])
@@ -37,6 +39,8 @@ const DataTable = () => {
             )
 
         })
+
+
     }
 
         
@@ -45,7 +49,7 @@ const DataTable = () => {
     return (
         <div className="dataTable card">
         <div className="dataTable_spacer"></div>
-            <div className="dataTable_header H_secondary">Latest Data</div>
+            <div className="dataTable_header H_secondary">Current Data</div>
             <div className="dataTable_body">
             <div className="dataTable_body_label">
                 <span className="H_tertiary">Time</span>
@@ -54,11 +58,17 @@ const DataTable = () => {
                 <span className="H_tertiary">Humidity</span>
                 <span className="H_tertiary">Moisture</span>
             </div>
-                {renderBody(data)}
+                {renderBody(props.today)}
             </div>
             
         </div>
     )
 }
 
-export default DataTable
+const mapStateToProps = (state) => {
+    return{
+        today: state.records.today
+    }
+}
+
+export default connect(mapStateToProps,null)(DataTable)

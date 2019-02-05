@@ -1,4 +1,6 @@
 import * as actions from '../Actions/types'
+import moment from 'moment'
+
 
 //Records will come in as an array of Record
 //Records stored will only be for the selected device
@@ -10,21 +12,35 @@ import * as actions from '../Actions/types'
 
 const INITIAL_STATE = {
     selected: {},
-    all: {}
+    all: {},
+    today: []
 }
 
 export default (state=INITIAL_STATE, action) => {
     switch(action.type){
         case actions.UPDATE_RECORD:{
-            //receive a single data object
-            //push it to any record with the current date
-
-            return state;
+                //receive the record from the subscription
+                //add it to today
+                //add it to selected if it is today
+                let record = action.payload
+                let {selected, today} = state
+                today.push(record)
+                let td = moment().format('MM/DD/YYYY')
+                if(selected.date === td){
+                    selected.data.push(record)
+                }
+            return {...state, selected, today};
         }
         case actions.SET_DEVICE_RECORDS:{
             //reset all records set selected to the first date
             let records = action.payload
-            let selected = records[records.length-1]
+            //set selected and today to last record in list
+            let latest = records[records.length-1]
+            let selected = latest
+            let td = moment().format('MM/DD/YYYY')
+            let today = []
+         
+            if(latest.date === td){ today = latest.data }
 
             let all = {}
 
@@ -32,11 +48,11 @@ export default (state=INITIAL_STATE, action) => {
                 all[record.date] = record
             })
 
-            return {selected, all};
+            return {selected, all, today};
         }
         case actions.SET_SELECTED_RECORD:{
             const record = action.payload
-            return {selected: record, all: state.all}
+            return {...state, selected: record}
         }
         default: return state
     }

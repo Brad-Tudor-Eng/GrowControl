@@ -14,6 +14,7 @@ query recordOneDay($data:RecordOneDayInput){
     recordOneDay(data: $data){
         date
         data{
+            time
             light
             temp
             humidity
@@ -59,10 +60,10 @@ const DateButton  = (props) => {
 
     const renderRecords = () => {
         const recordsArray = Object.keys(records).map(key=>records[key])
-        return recordsArray.map((record)=>
-        <ApolloConsumer>
+        return recordsArray.map((record,i)=>
+        <ApolloConsumer key={record.date}>
             {client => (
-                <li id={record.date} onClick={ (e)=>{ liClick( {e ,client} )} } className="dateBtn_item" key={record.date}>{record.date}</li>
+                <li id={record.date} onClick={ (e)=>{ liClick( {e ,client} )} } className="dateBtn_item" >{record.date}</li>
             )}  
         </ApolloConsumer>
         )}
