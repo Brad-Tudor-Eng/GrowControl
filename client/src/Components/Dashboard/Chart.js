@@ -38,7 +38,7 @@ const Chart = (props) =>  {
 
     return (
       <div className="chart card">
-          <h2 className="H_tertiary">{`Data for: ${props.date}`}</h2>
+          <h2 className="H_secondary-white">{`Data for: ${props.date}`}</h2>
         <Graph dataType={dataType}/>
         <div className="chart_controls">
         <DateButton />

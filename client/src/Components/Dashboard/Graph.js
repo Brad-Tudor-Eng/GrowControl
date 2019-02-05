@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import moment from 'moment'
 import {AreaChart, Area, XAxis, YAxis, Tooltip} from 'recharts'
 
 
@@ -42,7 +41,7 @@ class Graph extends Component {
 
   render() {
     const {width, height} = this.state
-    const {date, data} = this.props.record
+    const {data} = this.props.record
     return (
         <div
           className="graph"

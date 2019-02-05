@@ -24,6 +24,12 @@ query FindUser($data:FindUserInput){
       device{
       id
       dev_name
+      settings{
+        light {average tol}
+        temp {average tol}
+        humidity {average tol}
+        moisture {average tol}
+      }  
       records{
         date
         data{

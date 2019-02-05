@@ -69,9 +69,9 @@ input AddDeviceToUserInput{
 
 input UpdateDeviceInput{
     deviceId: ID!
-    userId: ID
     name: String
     settings: SettingsTypeInput
+    token: String!
 }
 
 input SettingsTypeInput{
@@ -91,7 +91,7 @@ input DeleteDeviceInput{
 }
 
 input DataSubscriptionInput{
-    userId: ID!
+    token: String!
     deviceId: ID!
 }
 

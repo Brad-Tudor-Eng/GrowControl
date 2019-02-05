@@ -15,7 +15,7 @@ export default (state=INITIAL_STATE, action) => {
             const device = action.payload
             const deviceName = device.dev_name
             let devices = {...state.devices}
-            devices[deviceName] = {id: device.id, dev_name: device.dev_name}
+            devices[deviceName] = {id: device.id, settings:device.settings, dev_name: device.dev_name}
             return {...state, devices}
         }
         case actions.UPDATE_DEVICE: {
@@ -54,7 +54,7 @@ export default (state=INITIAL_STATE, action) => {
             const deviceName = action.payload
             const device = state.devices[deviceName]
             let selectedDevice = {}
-            selectedDevice = {id: device.id, dev_name: device.dev_name}
+            selectedDevice = {id: device.id, settings:device.settings, dev_name: device.dev_name}
             return {selectedDevice, devices: {...state.devices}}
         }
         default: return state

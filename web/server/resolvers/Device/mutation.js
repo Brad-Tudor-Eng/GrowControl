@@ -18,23 +18,25 @@ const defaultSettings = {
 
 export const updateDevice = async (parent, {data}, ctx, info) => {
     
-    let {deviceId: id, name: dev_name, userId, settings} = data
-    const update = {}
+    console.log(data)
     
-    if(dev_name){ update.dev_name = dev_name }
+    // let {deviceId: id, name: dev_name, userId, settings} = data
+    // const update = {}
     
-    if(settings){ 
-        settings = { ...defaultSettings, ...settings}
-        update.settings = settings }
+    // if(dev_name){ update.dev_name = dev_name }
     
-    if(userId){ update.user = ObjectID( userId ) }
+    // if(settings){ 
+    //     settings = { ...defaultSettings, ...settings}
+    //     update.settings = settings }
+    
+    // if(userId){ update.user = ObjectID( userId ) }
 
-    const device = await Device.findByIdAndUpdate( 
-        ObjectID(id), 
-        {$set: update}, 
-        {new: true}).populate('user')
+    // const device = await Device.findByIdAndUpdate( 
+    //     ObjectID(id), 
+    //     {$set: update}, 
+    //     {new: true}).populate('user')
     
-    return device
+    // return device
 }
 
 export const addDeviceToUser = async (parent, {data}, ctx, info) =>{

@@ -1,12 +1,17 @@
 .deviceInfo{
     padding: 1.5rem;
     display: grid;
-    grid-template-rows: [header-start] 3rem [header-end dev-name-start] 2.5rem [dev-name-end avg-input-start] minmax(2rem, 1fr) [avg-input-end tol-input-start] minmax(2rem, 1fr) [tol-input-end] 5rem [btn-end];
+    grid-template-rows: [title-start] 3.25rem [title-end header-start] 3rem [header-end dev-name-start] 2.5rem [dev-name-end avg-input-start] minmax(2rem, 1fr) [avg-input-end tol-input-start] minmax(2rem, 1fr) [tol-input-end] 4rem [btn-end];
     grid-template-columns: [label-start] max-content [label-end light-start] 1fr [light-end temp-start] 1fr [temp-end humidity-start] 1fr [humidity-end moisture-start] 1fr [moisture-end]; 
     grid-row-gap: .5rem;
     background-color: $color_white;
     
-   
+   & h2{
+       grid-row: title-start / title-end;
+       grid-column: label-start / moisture-end;
+       text-align: center;
+       line-height: 2.25rem;
+   }
 }
 
 

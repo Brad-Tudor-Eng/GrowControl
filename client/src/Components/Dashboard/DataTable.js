@@ -5,46 +5,39 @@ import { connect } from 'react-redux'
 
 
 
+  
+
+const renderBody = (data) => {
+    let reversedData = []
+    if(!data){
+        return <h2 className="P">Not Active...</h2>
+    }
+    for (let i=data.length -1; i >= 0; i--) {
+        reversedData.push(data[i])
+    }
+    return reversedData.map( measurment => {
+        const {time, light, temp, humidity, moisture} = measurment
+        return (
+            <div 
+            key={measurment.time}
+            className="data dataTable_body_data">
+                <span className="data dataTable_body-time">{time}</span>
+                <span className="data dataTable_body-light">{light}</span>
+                <span className="data dataTable_body-temp">{temp}</span>
+                <span className="data dataTable_body-humidity">{humidity}</span>
+                <span className="data dataTable_body-moisture">{moisture}</span>
+            </div>
+        )
+    })
+}
+
+
+
 const DataTable = (props) => {
 
     useEffect(()=>{
 
     },[props.today])
-
-    const renderBody = (data) => {
-
-        let reversedData = []
-
-        if(!data){
-            return <h2 className="P">Not Active...</h2>
-        }
-
-        for (let i=data.length -1; i >= 0; i--) {
-            reversedData.push(data[i])
-        }
-
-        return reversedData.map( measurment => {
-            const {time, light, temp, humidity, moisture} = measurment
-
-            return (
-                <div 
-                key={measurment.time}
-                className="data dataTable_body_data">
-                    <span className="data dataTable_body-time">{time}</span>
-                    <span className="data dataTable_body-light">{light}</span>
-                    <span className="data dataTable_body-temp">{temp}</span>
-                    <span className="data dataTable_body-humidity">{humidity}</span>
-                    <span className="data dataTable_body-moisture">{moisture}</span>
-                </div>
-            )
-
-        })
-
-
-    }
-
-        
-    
 
     return (
         <div className="dataTable card">

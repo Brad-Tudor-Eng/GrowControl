@@ -64,7 +64,7 @@ const DateButton  = (props) => {
         <ApolloConsumer key={record.date}>
             {client => (
                 <li id={record.date} onClick={ (e)=>{ liClick( {e ,client} )} } className="dateBtn_item" >{record.date}</li>
-            )}  
+                )}
         </ApolloConsumer>
         )}
 

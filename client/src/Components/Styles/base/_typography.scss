@@ -26,6 +26,14 @@
         &-sub{
             font-size: 4rem;
         }
+
+        &-white{
+            font-family: 'Kanit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800i;
+            letter-spacing: .2rem;
+            color: rgb(238, 238, 238);
+        }
         
         @include respond('lg-tab'){
             font-size: 5.5rem;
