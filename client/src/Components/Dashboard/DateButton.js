@@ -1,54 +1,50 @@
-import React, {Component} from 'react'
+import React, { useEffect, useState } from 'react'
+import actions from '../../Actions'
+import { connect } from 'react-redux'
 
-const data = [
-    "01/30/2019",
-    "01/29/2019",
-    "01/28/2019",
-    "01/27/2019",
 
-]
+const DateButton  = (props) => {
 
-class DateButton extends Component {
+    const [expanded, setExpanded] = useState(null)
+    const {records, selected} = props
 
-    state={
-        expanded: null,
-        selected: "01/30/2019"
+    useEffect(()=>{
+
+    },[expanded, records])
+
+    const expand=()=>{
+        expanded ? setExpanded(null) : setExpanded('expanded')
     }
 
-    expand=()=>{
-        const expanded = this.state.expanded;
-        expanded ? this.setState({expanded: null}) :
-        this.setState({expanded: "expanded"})
+    const liClick=(e)=>{
+        props.setSelectedRecord(e.target.id)
+        //execute query to fetch data for record
+
+
+
     }
 
-    setSelected = (selected) => {
-        this.setState({selected})
+    const renderRecords = () => {
+        const recordsArray = Object.keys(records).map(key=>records[key])
+        return recordsArray.map((record)=>
+            (<li id={record.date} onClick={(e)=>{liClick(e)}} className="dateBtn_item" key={record.date}>{record.date}</li>))
     }
 
-    liClick=(e)=>{
-        this.setSelected(e.target.id);
+    const renderCenter = () => {
+        return !expanded ? (<div className="dateBtn_center" >{selected.date}<i className="fas fa-chevron-up"></i></div>) :
+                            (<div className={`dateBtn_center ${expanded}`}><ul>{renderRecords()}</ul></div>)
     }
 
-    renderCenter = () => {
-        const expanded = this.state.expanded
-        if(!expanded){
-            return (<div className="dateBtn_center" >{this.state.selected }<i className="fas fa-chevron-up"></i></div>)
-        }else{
-            //insert expanded center scroll view of dates
-            let list = data.map((el)=>{
-                return (<li id={el} onClick={(e)=>{this.liClick(e)}} className="dateBtn_item" key={el}>{el}</li>)
-            })
-
-            return (<div className={`dateBtn_center ${this.state.expanded}`}><ul>{list}</ul></div>)
-        }
-    }
-
-    render(){
         return(
-            <button onClick={()=>{this.expand()}} className="dateBtn">{this.renderCenter()}</button>
+            <button onClick={()=>{expand()}} className="dateBtn">{renderCenter()}</button>
         )
-    }
-
 }
 
-export default DateButton
+const mapStateToProps = (state) => {
+    return {
+        records: state.records.all,
+        selected: state.records.selected
+    }
+}
+
+export default connect(mapStateToProps, actions)(DateButton)

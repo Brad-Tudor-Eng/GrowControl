@@ -76,7 +76,6 @@ class Dashboard extends Component {
           this.props.updateDevices(devices)
     //set the records of the first device to the selected records
           const records = devices[0].records
-          console.log(records)
           if(records !== []){
             this.props.setDeviceRecords(records)
           }

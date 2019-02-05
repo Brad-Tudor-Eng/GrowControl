@@ -25,12 +25,18 @@ export default (state=INITIAL_STATE, action) => {
             //reset all records set selected to the first date
             let records = action.payload
             let selected = records[0]
-            let all = {...records}
+
+            let all = {}
+
+            records.forEach(record => {
+                all[record.date] = record
+            })
+
             return {selected, all};
         }
         case actions.SET_SELECTED_RECORD:{
-
-            return state
+            const date = action.payload
+            return {selected: state.all[date], all: state.all}
         }
         default: return state
     }
