@@ -104,6 +104,7 @@ input FindUserDevicesInput{
 input RecordOneDayInput{
     deviceId: ID!
     date: String!
+    token: String!
 }
 
 input RecordDateRangeInput{

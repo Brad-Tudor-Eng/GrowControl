@@ -4,7 +4,7 @@ import actions from '../../Actions'
 
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 import Chart from './Chart'
 import DataTable from './DataTable'
@@ -71,7 +71,7 @@ class Dashboard extends Component {
       const user = {id, email}
     //if no devices loaded set the devices attached to the user
       const obj = this.props.device.devices
-        if(data.device !== [] && Object.entries(obj).length === 0 && obj.constructor === Object){
+        if(data.device !== [] && Object.keys(obj).length === 0 ){
           let devices = data.device
           this.props.updateDevices(devices)
     //set the records of the first device to the selected records

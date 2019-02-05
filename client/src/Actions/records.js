@@ -14,10 +14,10 @@ export const setDeviceRecords = (records) => {
         payload: records
     }
 }
-export const setSelectedRecord = (date) => {
+export const setSelectedRecord = (record) => {
     return{
         type: actions.SET_SELECTED_RECORD,
-        payload: date
+        payload: record
     }
 }
 

@@ -34,8 +34,8 @@ export default (state=INITIAL_STATE, action) => {
             });
             let dev = state.selectedDevice
             //check to see if there is a selected device
-            if(Object.entries(dev).length === 0 && dev.constructor === Object){
-                 dev = {[devArry[0].dev_name]: devArry[0]}
+            if(Object.keys(dev).length === 0){
+                 dev = devArry[0]
             }
             return {selectedDevice: dev, devices: obj}
         }
@@ -54,7 +54,7 @@ export default (state=INITIAL_STATE, action) => {
             const deviceName = action.payload
             const device = state.devices[deviceName]
             let selectedDevice = {}
-            selectedDevice[deviceName] = {id: device.id, dev_name: device.dev_name}
+            selectedDevice = {id: device.id, dev_name: device.dev_name}
             return {selectedDevice, devices: {...state.devices}}
         }
         default: return state

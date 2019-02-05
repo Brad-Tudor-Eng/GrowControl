@@ -21,7 +21,7 @@ export const findUser = async (parent, {data}, ctx, info) =>{
             devices.forEach((device,i)=>{
                 let records = device.records
                 records = records.map((record,i)=>{
-                    return i === 0 ? record : { date: record.date, data: [] } 
+                    return i === (records.length-1) ? record : { date: record.date, data: [] } 
                 })
                 device.records = records
             })

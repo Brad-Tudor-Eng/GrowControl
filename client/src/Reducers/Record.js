@@ -24,7 +24,7 @@ export default (state=INITIAL_STATE, action) => {
         case actions.SET_DEVICE_RECORDS:{
             //reset all records set selected to the first date
             let records = action.payload
-            let selected = records[0]
+            let selected = records[records.length-1]
 
             let all = {}
 
@@ -35,8 +35,8 @@ export default (state=INITIAL_STATE, action) => {
             return {selected, all};
         }
         case actions.SET_SELECTED_RECORD:{
-            const date = action.payload
-            return {selected: state.all[date], all: state.all}
+            const record = action.payload
+            return {selected: record, all: state.all}
         }
         default: return state
     }
