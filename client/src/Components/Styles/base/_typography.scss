@@ -23,6 +23,9 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 
+        &-sub{
+            font-size: 4rem;
+        }
         
         @include respond('lg-tab'){
             font-size: 5.5rem;

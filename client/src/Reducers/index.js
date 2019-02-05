@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import User from './User'
+import Device from './Device'
+import Record from './Record'
 
 export default combineReducers({
     user: User,
-    device: ()=>'a',
-    records: ()=>'b',
-    tableData: ()=>'c'
+    device: Device,
+    records: Record,
 })

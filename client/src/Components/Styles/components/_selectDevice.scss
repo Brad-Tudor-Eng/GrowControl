@@ -1,0 +1,55 @@
+.selectDevice{
+    position: relative;
+    border: none;
+    border-radius: .5rem;
+    margin-right: 1rem;
+    background-color: $color_primary;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-weight: 900;
+    letter-spacing: .1rem;
+    color: $color_grey-dark;
+    outline: none;
+    cursor: pointer;
+    
+        &_center{
+            font-size: 2rem;
+            border: .5rem solid $color_primary;
+            background-color: $color_primary;
+            display: block;
+            padding: .25rem;
+            border-radius: .25rem;
+            background-color: white;
+            transition: all .2s ease;
+            width: 99%;
+            & > i{
+                padding-left: 1rem;
+            }
+        }
+    
+    
+    
+        &_center.expanded{
+            font-size: 1.5rem;
+            bottom: 0rem;
+            padding: .25rem;
+            position: absolute;
+            overflow-y: scroll;
+            height: 8rem;
+            width: 100%;
+        }
+    
+        &_item{
+            padding: .08rem 2.5rem;
+            &:hover{
+                background-color: $color_primary;
+                color: white;
+            }
+        }
+    }
+
+    .dropdownContainer{
+        display: flex;
+        width: 76%;
+    }

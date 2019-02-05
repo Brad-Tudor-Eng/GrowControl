@@ -1,7 +1,23 @@
-import * as types from './types'
+import * as actions from './types'
 
-//Records
-
-export const updateRecrods = () => {
-
+//update an individual record
+export const updateRecord = (data) => {
+    return{
+        type: actions.UPDATE_RECORD,
+        payload: data
+    }
 }
+//set device records
+export const setDeviceRecords = (records) => {
+    return {
+        type: actions.SET_DEVICE_RECORDS,
+        payload: records
+    }
+}
+export const setSelectedRecord = (date) => {
+    return{
+        type: actions.SET_SELECTED_RECORD,
+        payload: date
+    }
+}
+

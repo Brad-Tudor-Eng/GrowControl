@@ -1,11 +1,10 @@
-import * as types from './types'
+import * as action from './types'
 
 //User
 
-export const updateUser = () => {
-
-}
-
-export const deleteUser = () => {
-
+export const updateUser = (user) => {
+    return {
+        type: action.UPDATE_USER,
+        payload: user
+    }
 }

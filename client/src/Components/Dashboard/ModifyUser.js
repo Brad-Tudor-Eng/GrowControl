@@ -2,16 +2,15 @@ import React, {Component} from 'react'
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import { connect } from 'react-redux'
-
-import * as actions from '../../Actions'
-
+import Cookies from 'js-cookie'
+import actions from '../../Actions'
+import { withRouter } from 'react-router-dom'
 import Spinner from '../General/Spinner'
 
 const UPDATE_USER = gql`
   mutation updateUser($data: UpdateUserInput!) {
     updateUser(data: $data) {
       id
-      name
       email
     }
   }
@@ -30,12 +29,13 @@ class ModifyUser extends Component {
     state = {
         email: "",
         password: "",
-        loading: false
+        loading: false,
+        errorMsg: null,
       }
 
-    
-    updateBtn = ({loginUser}) =>{
 
+    
+    updateBtn = (updateUser) =>{
         if(this.state.loading){
             return(<div> <Spinner /> </div>) 
         }else{
@@ -43,10 +43,12 @@ class ModifyUser extends Component {
             <button className="btn_primary"
             onClick={ ()=>{
                 this.setState({loading: true})
-                loginUser({ variables: { 
+                updateUser({ variables: { 
                 data: {
+                    userId: this.props.user.id,
                     email: this.state.email,
-                    password: this.state.password
+                    password: this.state.password,
+                    token: this.props.user.token
                     } 
                 } 
                 })
@@ -61,22 +63,29 @@ class ModifyUser extends Component {
     }
 
 
-    deleteBtn = ({deleteUser}) =>{
+
+    deleteBtn = (deleteUser) => {
+
 
         if(this.state.loading){
-            return (<div> <Spinner /> </div>) 
+            return(<div> <Spinner /> </div>) 
         }else{
             return (
-            <button className="btn_primary btn_primary--del modifyUser_btn"
+            <button className="btn_primary btn_primary--del"
             onClick={ ()=>{
-                this.setState({loading: true})
+
+                //delete the cookie
+                Cookies.remove("xAuthG")
+                //remove the user from state
+                this.props.logOut()
+                 //send the delete mutation
                 deleteUser({ variables: { 
-                data: {
-                    email: this.state.email,
-                    password: this.state.password
-                    } 
-                } 
+                    data: {
+                        userId: this.props.user.id
+                    }} 
                 })
+                //send the user back to the login page
+                this.props.history.push('/')
                 
             }}
             
@@ -85,7 +94,8 @@ class ModifyUser extends Component {
             </button>
             )
         }
-    }
+
+     }
 
     render(){
 
@@ -115,31 +125,42 @@ class ModifyUser extends Component {
 
                 <div className="modifyUser_btns">
 
-                    <Mutation mutation={UPDATE_USER} >
+                    <Mutation 
+                        mutation={UPDATE_USER} 
+                        onCompleted={(data)=>{                             
+                            this.setState({loading: false})
+                            this.props.updateUser(data.updateUser)
+                                //close the modal
+                            this.props.closeModal()
+                        }}
+                        onError={()=>{
+                        }}
+                    >
                     {(updateUser, { data }) => (
                         <div>
                         { this.updateBtn(updateUser) }
                         </div>
                     )}
                     </Mutation> 
-
+                        
                     <Mutation mutation={DELETE_USER} >
-                    {(deleteUser, { data }) => (
-                        <div>
-                        { this.deleteBtn(deleteUser) }
-                        </div>
-                    )}
+                        {(deleteUser, { data }) => (
+                            <div>
+                            { this.deleteBtn(deleteUser) }
+                            </div>
+                        )}
                     </Mutation> 
                 </div>
+                <p className="error">{this.state.errorMsg}</p>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return(
-        state 
-    )
+    return{
+        user: state.user 
+    }
 }
 
-export default connect(mapStateToProps, actions)(ModifyUser)
+export default connect(mapStateToProps, actions)(withRouter(ModifyUser))

@@ -1,6 +1,9 @@
 import * as actions from '../Actions/types'
 
-const INITIAL_STATE = { }
+const INITIAL_STATE = {
+    id: null,
+    email: null,
+}
 
 
 export default (state=INITIAL_STATE, action) => {
@@ -12,6 +15,10 @@ export default (state=INITIAL_STATE, action) => {
         case actions.LOGIN:{
             const user = action.payload
             return {...state, ...user}
+        }
+        case actions.UPDATE_USER:{
+            const user = action.payload
+            return {...state,...user}
         }
         case actions.LOGOUT:{
             return {}

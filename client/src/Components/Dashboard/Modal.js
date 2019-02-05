@@ -4,9 +4,6 @@ import DeviceMenu from './DeviceMenu'
 
 class Modal extends Component {
 
-    state = {
-
-    }
 
     closeModal = () => {
         this.props.setModal()
@@ -14,8 +11,8 @@ class Modal extends Component {
 
     renderForm = () => {
         switch (this.props.menu) {
-            case "userAccount": return <div><ModifyUser /></div>
-            case "deviceMenu": return <div><DeviceMenu /></div>
+            case "userAccount": return <div><ModifyUser closeModal={this.closeModal}/></div>
+            case "deviceMenu": return <div><DeviceMenu closeModal={this.closeModal}/></div>
             default: return null
         }
     }
