@@ -8,40 +8,41 @@ import jwt from 'jsonwebtoken'
 //   Update Device Name     [x]
 //   Delete Device          [x]
 
-const defaultSettings = {
-    light: {average: 0, tol: 0},
-    temp: {average: 0, tol: 0},
-    humidity: {average: 0, tol: 0},
-    moisture: {average: 0, tol: 0}
+const defaultSettings = { 
+    light: { average: 700, tol: 5}, 
+    temp: { average: 75, tol: 5 }, 
+    humidity: { average: 85, tol: 5 }, 
+    moisture: { average: 75, tol: 5 }
 }
 
 
 export const updateDevice = async (parent, {data}, ctx, info) => {
     
-    console.log(data)
-    
-    // let {deviceId: id, name: dev_name, userId, settings} = data
-    // const update = {}
-    
-    // if(dev_name){ update.dev_name = dev_name }
-    
-    // if(settings){ 
-    //     settings = { ...defaultSettings, ...settings}
-    //     update.settings = settings }
-    
-    // if(userId){ update.user = ObjectID( userId ) }
+    const verify = jwt.verify(data.token, process.env.JWT_KEY)
 
-    // const device = await Device.findByIdAndUpdate( 
-    //     ObjectID(id), 
-    //     {$set: update}, 
-    //     {new: true}).populate('user')
-    
-    // return device
+    let {deviceId: id, name: dev_name, settings} = data  
+    if(verify){
+        const update = {}
+        
+            update.dev_name = dev_name    
+            update.settings = settings 
+
+        const device = await Device.findByIdAndUpdate( 
+            ObjectID(id), 
+            {$set: update}, 
+            {new: true}).populate('user')
+        
+        return device
+    }else{
+        throw new Error('verification needed')
+    }
+
 }
 
 export const addDeviceToUser = async (parent, {data}, ctx, info) =>{
     //verify the user
-    const verify = jwt.verify(data.token, process.env.JWT_KEY)  
+    const verify = jwt.verify(data.token, process.env.JWT_KEY) 
+     
     if(verify){
         let {deviceName, userId} = data
         userId = ObjectID(userId)
@@ -58,11 +59,7 @@ export const addDeviceToUser = async (parent, {data}, ctx, info) =>{
                 
                     dev_name: deviceName,
                     user: userId,
-                    settings: { light: { average: 700, tol: 5}, 
-                                temp: { average: 75, tol: 5 }, 
-                                humidity: { average: 85, tol: 5 }, 
-                                moisture: { average: 75, tol: 5 }
-                              },
+                    settings: defaultSettings,
                     records: [ ]
                 }
             )
@@ -84,7 +81,6 @@ export const addDeviceToUser = async (parent, {data}, ctx, info) =>{
 export const deleteDevice = async (parent, {data}, ctx, info) => {
     
     const { deviceId: id } = data
-    
     const device = await Device.findByIdAndRemove( ObjectID(id) )
     
     return device
