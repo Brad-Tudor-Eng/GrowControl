@@ -93,22 +93,12 @@ const renderBody = ({client, props}) => {
         
     }
 
-
-
-
-
-
     // useEffect(()=>{
     // let newData = subscribeToNewData()
     // props.setSelectedRecord(newData)
     // },[data])
 
-
-
-
     // let reversedData = []
-
-
 
     // if(!data){
     //     return <h2 className="P">Not Active...</h2>
