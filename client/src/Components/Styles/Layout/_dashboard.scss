@@ -7,12 +7,23 @@
     background-color: $color_grey-light;
     overflow: hidden;
 
-    grid-template-columns: [d-start d-chart-start] minmax(max-content, 65vw) [d-chart-end d-table-start] minmax(max-content, 1fr) [d-table-end d-end]; 
-    grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] 60vh [d-chart-end] 1fr [d-end];
+    grid-template-columns: [d-start d-chart-start d-gauges-start] minmax(max-content, 65vw) [d-chart-end d-table-start d-info-start d-gauges-end ] minmax(max-content, 1fr) [d-info-end d-table-end d-end]; 
+    grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start d-table-start] 60vh [d-chart-end d-table-end d-gauges-start d-info-start] 1fr [d-info-end d-gauges-end d-end];
     grid-column-gap: 3rem;
     grid-row-gap: 2rem;
     padding: 1rem 3rem 3rem 3rem;
+
+
+    @include respond(lg-phone) { // width < 1200?
+        margin: 0;
+        margin-left: -1rem;
+        width: 103vw;
+        height: auto;
+        padding: auto;
+        grid-template-columns: [d-start d-chart-start d-table-start d-info-start d-gauges-start] 90vw [ d-chart-end d-table-end d-end d-info-end d-gauges-end]; 
+        grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] 60vh [d-chart-end d-table-start] 60vh [d-table-end d-gauges-start] 60vh [d-gauges-end d-info-start] 40vh [d-info-end]
     
+    }
 }
 
 .menu{
@@ -27,15 +38,18 @@
 
 .dataTable{
     grid-column: d-table-start / d-table-end;
-    grid-row: d-chart-start / d-chart-end;
+    grid-row: d-table-start / d-table-end;
+
 }
 
 .deviceInfo{
-    grid-column: d-table-start / d-table-end;
-    grid-row: d-chart-end / d-end;
+    grid-column: d-info-start / d-info-end;
+    grid-row: d-info-start / d-info-end;
+
 }
 
 .gauges{
-    grid-column: d-chart-start / d-chart-end;
-    grid-row: d-chart-end / d-end;
+    grid-column: d-gauges-start / d-gauges-end;
+    grid-row: d-gauges-start / d-gauges-end;
+
 }
