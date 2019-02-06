@@ -34,14 +34,19 @@ class Graph extends Component {
     return (
       this.state.width !== nextState.width ||
       this.state.height !== nextState.height ||
-      this.props.record !== nextProps.record ||
-      this.props.dataType !== nextProps.dataType
+      this.props.record.data !== nextProps.record.data ||
+      this.props.dataType !== nextProps.dataType ||
+      this.props.data !== nextProps.data
     )
   }
 
   render() {
     const {width, height} = this.state
-    const {data} = this.props.record
+    let data
+    let d = this.props.record.data
+    if(d){
+      data = [...d]
+    }
     return (
         <div
           className="graph"
@@ -66,8 +71,10 @@ class Graph extends Component {
 
 
 const mapStateToProps = (state) => {
+  let data = state.records.today
   return {
-    record: state.records.selected
+    record: state.records.selected,
+    data: data[data.length - 1]
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Gauge from './Gauge'
 import { connect } from 'react-redux'
 
@@ -9,6 +9,9 @@ const Gauges = (props) => {
 
        let data = props.data || {light: 0, temp: 0, humidity: 0, moisture: 0}
  
+useEffect(()=>{
+
+},[props.data])
 
     return (
         <div className="gauges">

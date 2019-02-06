@@ -12,6 +12,7 @@ const Chart = (props) =>  {
 
     },[dataType, props.date])
 
+
   const renderButtons = () => {
     const buttons = ["Light", "Temp", "Humidity", "Moisture"]
     
@@ -53,8 +54,9 @@ const Chart = (props) =>  {
 
 
 const mapStateToProps = (state) => {
+
   return {
-    date: state.records.selected.date 
+    date: state.records.selected.date, 
   }
 }
 

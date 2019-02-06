@@ -19,17 +19,11 @@ const INITIAL_STATE = {
 export default (state=INITIAL_STATE, action) => {
     switch(action.type){
         case actions.UPDATE_RECORD:{
-                //receive the record from the subscription
-                //add it to today
-                //add it to selected if it is today
+
                 let record = action.payload
-                let {selected, today} = state
-                today.push(record)
-                let td = moment().format('MM/DD/YYYY')
-                if(selected.date === td){
-                    selected.data.push(record)
-                }
-            return {...state, selected, today};
+                let newSet = state.today
+                newSet.push(record)
+            return {...state, today:newSet};
         }
         case actions.SET_DEVICE_RECORDS:{
             //reset all records set selected to the first date

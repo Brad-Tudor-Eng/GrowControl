@@ -93,6 +93,7 @@ input DeleteDeviceInput{
 
 input DataSubscriptionInput{
     token: String!
+    userId: ID!
     deviceId: ID!
 }
 

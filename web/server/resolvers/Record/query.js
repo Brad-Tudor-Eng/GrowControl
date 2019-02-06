@@ -12,7 +12,6 @@ import _ from 'lodash'
 
 export const recordOneDay = async (parent, {data}, ctx, info) =>{
 //given User ID and Device ID return a record for a single day
-console.log('query hit')
      const {deviceId, date} = data
      const device = await Device.findById( ObjectID(deviceId) )
      const record = device.records.find( (el)=> el.date === date )
