@@ -1,1 +1,5 @@
-{"deviceId":"5c3f88501a89ca3a9c26c16d","dev_name":"BlueGoose","settings":{"light":{"average":500,"tol":10},"temp":{"average":75,"tol":10},"humidity":{"average":70,"tol":10},"moisture":{"average":0,"tol":10}}}
+{   
+    "deviceId":"5c3f88501a89ca3a9c26c16d",
+    "dev_name":"BlueGoose",
+    "settings":{"light":{"average":500,"tol":10},"temp":{"average":75,"tol":10},"humidity":{"average":70,"tol":10},"moisture":{"average":0,"tol":10}}
+}
