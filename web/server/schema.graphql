@@ -88,6 +88,7 @@ input SettingTypeInput{
 
 input DeleteDeviceInput{
     deviceId: ID!
+    token: String!
 }
 
 input DataSubscriptionInput{
