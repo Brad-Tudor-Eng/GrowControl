@@ -1,11 +1,11 @@
-import React, {Component, useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import gql from "graphql-tag";
 import Cookies from 'js-cookie';
 import moment from 'moment'
 import actions from '../../Actions';
 
-import { Query, Subscription } from "react-apollo";
+import { Query } from "react-apollo";
 //This component shows the last 10 readings
 //live data stream
 

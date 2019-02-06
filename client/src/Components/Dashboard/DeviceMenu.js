@@ -45,19 +45,6 @@ const DELETE_DEVICE = gql`
     }
   }`
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
   const DeviceMenu = (props) =>  {
 
     useEffect(()=>{},[props])
@@ -135,7 +122,7 @@ const DELETE_DEVICE = gql`
     const deleteDeviceMutation = async ({ deviceId, client }) => {
         let token = await Cookies.get('xAuthG')
     
-        const { data, error } = await client.mutate({
+        const { error } = await client.mutate({
           mutation:DELETE_DEVICE,
           variables:{data: { deviceId, token }}
         });
