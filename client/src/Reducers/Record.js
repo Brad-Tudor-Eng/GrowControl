@@ -35,20 +35,25 @@ export default (state=INITIAL_STATE, action) => {
             //reset all records set selected to the first date
             let records = action.payload
             //set selected and today to last record in list
-            let latest = records[records.length-1]
-            let selected = latest
-            let td = moment().format('MM/DD/YYYY')
-            let today = []
-         
-            if(latest.date === td){ today = latest.data }
+            if(records.length > 0){
+                let latest = records[records.length-1]
+                let selected = latest
+                let td = moment().format('MM/DD/YYYY')
+                let today = []
+             
+                if(latest.date === td){ today = latest.data }
+    
+                let all = {}
+    
+                records.forEach(record => {
+                    all[record.date] = record
+                })
+    
+                return {selected, all, today};
+            }else{
+                return INITIAL_STATE
+            }
 
-            let all = {}
-
-            records.forEach(record => {
-                all[record.date] = record
-            })
-
-            return {selected, all, today};
         }
         case actions.SET_SELECTED_RECORD:{
             const record = action.payload

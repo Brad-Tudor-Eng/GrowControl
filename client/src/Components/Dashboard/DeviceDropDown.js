@@ -10,7 +10,7 @@ class SelectDevice extends Component {
         selected: "Select A Device"
     }
     componentDidMount(){
-        console.log(this.props)
+      
     }
 
     expand=()=>{

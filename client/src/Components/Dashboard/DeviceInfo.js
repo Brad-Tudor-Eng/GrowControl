@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import gql from "graphql-tag";
 import {  ApolloConsumer } from "react-apollo";
 import { connect } from 'react-redux'

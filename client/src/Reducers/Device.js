@@ -15,7 +15,7 @@ export default (state=INITIAL_STATE, action) => {
             const device = action.payload
             const deviceName = device.dev_name
             let devices = {...state.devices}
-            devices[deviceName] = {id: device.id, settings:device.settings, dev_name: device.dev_name}
+            devices[deviceName] = device
             return {...state, devices}
         }
         case actions.UPDATE_DEVICE: {
@@ -42,12 +42,9 @@ export default (state=INITIAL_STATE, action) => {
         case actions.DELETE_DEVICE: {
             //receives a device name and removes it from the object
             const deviceName = action.payload
-            const obj = state.devices;
-            const devices = Object.keys(obj).reduce((col, key)=>{
-                if(deviceName !== key){ col[key] = obj[key] }             
-                return col
-            })
-
+            let devices = state.devices;
+            delete devices[deviceName]
+            
             return {...state, devices}
         }
         case actions.SET_SELECTED_DEVICE:{
