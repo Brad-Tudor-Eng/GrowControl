@@ -76,12 +76,12 @@
 
         @include respond(lg-tab){
             justify-self: center;
-            width: 78vw;
+            width: 79vw;
         }
 
         @include respond(sm-phone){
             justify-self: center;
-            width: 78vw;
+            width: 81vw;
         }
 
 
@@ -100,14 +100,14 @@
     
         @include respond(lg-phone){
             margin-top: 1rem;
-            width: 80vw;
+            width: 79vw;
             margin-right: 1rem;
         }
 
         @include respond(sm-phone){
             margin-top: 1rem;
             width: 80vw;
-            margin-right: 0rem;
+            margin-right: 1rem;
         }
     }
 }
