@@ -90,7 +90,14 @@ subscription DataSubscription($data: DataSubscriptionInput){
                 }}
             </Query>)
     }else{
-        return (<h2>Loading...</h2>)
+        return (<div>
+            <br></br>
+            <h2>Nothing Yet...</h2>
+            <br></br>
+            <h2>If a new device has been added,</h2>
+            <h2>please refresh the page once the id has been</h2>
+            <h2>updated on the physical device.</h2>
+            </div>)
     }
 
 }

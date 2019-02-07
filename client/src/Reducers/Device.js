@@ -54,6 +54,9 @@ export default (state=INITIAL_STATE, action) => {
             selectedDevice = {id: device.id, settings:device.settings, dev_name: device.dev_name}
             return {selectedDevice, devices: {...state.devices}}
         }
+        case actions.LOGOUT:{
+            return INITIAL_STATE
+        }
         default: return state
     }
 }

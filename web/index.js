@@ -8,8 +8,6 @@ import cookieParser                 from 'cookie-parser'
 import bodyParser                   from 'body-parser'
 import cors                         from 'cors'
 
-import verifyToken                  from './server/services/verifyToken'
-
 require('dotenv').config()
 require('./server/broker/index')
 

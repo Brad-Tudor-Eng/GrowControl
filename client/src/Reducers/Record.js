@@ -53,6 +53,9 @@ export default (state=INITIAL_STATE, action) => {
             const record = action.payload
             return {...state, selected: record}
         }
+        case actions.LOGOUT:{
+            return INITIAL_STATE
+        }
         default: return state
     }
 }

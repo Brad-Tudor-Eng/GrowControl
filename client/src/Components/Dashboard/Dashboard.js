@@ -63,6 +63,10 @@ class Dashboard extends Component {
       this.props.updateUser({token: Cookies.get('xAuthG') }) 
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+      return(this.props.state !== nextProps)
+    }
+
     setModal = () => {
         const showModal = !this.state.showModal    
         this.setState({showModal})
@@ -79,11 +83,13 @@ class Dashboard extends Component {
       const obj = this.props.device.devices
         if(data.device !== [] && Object.keys(obj).length === 0 ){
           let devices = data.device
-          this.props.updateDevices(devices)
-    //set the records of the first device to the selected records
-          const records = devices[0].records
-          if(records !== []){
-            this.props.setDeviceRecords(records)
+          if(devices.length !== 0){
+            this.props.updateDevices(devices)
+            //set the records of the first device to the selected records
+                  const records = devices[0].records
+                  if(records !== []){
+                    this.props.setDeviceRecords(records)
+                  }
           }
         }
     //set the logged in user to the current user

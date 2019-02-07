@@ -21,7 +21,7 @@ export default (state=INITIAL_STATE, action) => {
             return {...state,...user}
         }
         case actions.LOGOUT:{
-            return {}
+            return INITIAL_STATE
         }
         default: return state
     }
