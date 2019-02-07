@@ -88,24 +88,18 @@ const CREATE_USER = gql`
                       <h2 className="authForm_header H_secondary">Sign Up</h2>
                       
                       <input
-                          id="email"
-                          name="email"
-                          className="form_input"
                           type="email"
                           value={this.state.email}
                           onChange={(event)=>{this.setState({email: event.target.value})}}
                       ></input>
-                      <label type="form_label" htmlFor="email">Email</label>
+                      <label>Email</label>
                       
                       <input
-                          id="password"
-                          name="password"
-                          className="form_input"
                           type="password"
                           value={this.state.password}
                           onChange={(event)=>{this.setState({password: event.target.value})}}
                       ></input>
-                      <label type="form_label" htmlFor="password">Password</label>
+                      <label>Password</label>
                       
                       <Mutation 
                       mutation={CREATE_USER}

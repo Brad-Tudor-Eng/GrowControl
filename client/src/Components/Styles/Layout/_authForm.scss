@@ -6,7 +6,7 @@ padding: 3rem;
 padding-top: 1rem;
 display: flex;
 flex-direction: column;
-height: 32vh;
+height: max-content;
 
     &_close{
         align-self: flex-end;
@@ -18,10 +18,10 @@ height: 32vh;
 
     & input{
         display: block;
+        padding: 1rem;
         padding-left: .5rem;
         margin: 1rem 0;
         width: 90%;
-        height: 4rem;
         z-index: 2;
         background-color: rgba(2, 226, 255, 0);
         border: .25rem solid rgb(0, 168, 247);
@@ -57,32 +57,4 @@ height: 32vh;
 }
 
 
-@include respond('sm-tab'){
-    .authForm{
-        
-        & input:focus + label,
-        & input:not([value=""]) + label
-        {
-            transform: translateY(-6.5rem);
-        }
-    }
-}
-
-@include respond('lg-phone'){
-
-    .authForm{
-        height: 40vh;
-
-        & label{
-            transform: translateY(-3.5rem) translateX(.5rem);
-        }
-
-        & input:focus + label,
-        & input:not([value=""]) + label
-        {
-            transform: translateY(-6.5rem);
-        }
-    }
-
-}
 
