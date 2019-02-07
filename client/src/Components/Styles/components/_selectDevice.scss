@@ -52,4 +52,19 @@
     .dropdownContainer{
         display: flex;
         width: 76%;
+        @include respond(lg-desktop){
+            width: 76%;
+        }
+
+        @include respond(lg-tab){
+            width: 80vw;
+        }
+
+        @include respond(sm-phone){
+            width: 80vw;
+        }
+    
+
+    
+
     }

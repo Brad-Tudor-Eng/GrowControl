@@ -10,12 +10,15 @@
         color: $color_grey-dark;
         outline: none;
         cursor: pointer;
-
+        
+        
         &--del{
+            width: max-content;
             background-color: $color_red;
         }
 
         &--add{
+            width: max-content;
             background-color: $color_green;
         }
 
@@ -34,7 +37,7 @@
                 border-radius: .25rem;
                 background-color: white;
                 transition: all .2s ease;
-                
+                white-space: nowrap;
 
                 &--del{
                     &:hover{
@@ -50,11 +53,13 @@
             &:hover &-center{
                 transform: translateY(-.2rem) scale(1.015);
                 box-shadow: .5px 2px 8px .1px $color_btn_shadow;
+                white-space: nowrap;
             }
         
             &:active &-center{
                 transform: translateY(-.05rem) scale(.995);
                 box-shadow: 1px 2px 2px .2px $color_btn_shadow;
+                white-space: nowrap;
             }
     }
 

@@ -69,6 +69,7 @@ const DELETE_DEVICE = gql`
             const deviceName = inputDeviceName
             addDeviceMutation({client, userId, deviceName})
         }else{
+            setLoading(false)
             setErrorMsg("Must Enter A New Device Name")
         }
         
@@ -95,6 +96,7 @@ const DELETE_DEVICE = gql`
              props.closeModal()
 
         }else{
+            setLoading(false)
             setErrorMsg("Must select a device")
         }
     }

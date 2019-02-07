@@ -21,7 +21,7 @@
         height: auto;
         padding: auto;
         grid-template-columns: [d-start d-chart-start d-table-start d-info-start d-gauges-start] 90vw [ d-chart-end d-table-end d-end d-info-end d-gauges-end]; 
-        grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] 90vh [d-chart-end d-table-start] 60vh [d-table-end d-gauges-start] 60vh [d-gauges-end d-info-start] 40vh [d-info-end];
+        grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] max-content [d-chart-end d-table-start] 60vh [d-table-end d-gauges-start] 60vh [d-gauges-end d-info-start] 40vh [d-info-end];
     
     }
 
@@ -32,7 +32,7 @@
         height: auto;
         padding: auto;
         grid-template-columns: [d-start d-chart-start d-table-start d-info-start d-gauges-start] 90vw [ d-chart-end d-table-end d-end d-info-end d-gauges-end]; 
-        grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] 80vh [d-chart-end d-table-start] 60rem [d-table-end d-gauges-start] 40rem [d-gauges-end d-info-start] 35rem [d-info-end];
+        grid-template-rows: [d-start d-header-start] 5rem [d-header-end d-chart-start] max-content [d-chart-end d-table-start] 60rem [d-table-end d-gauges-start] 40rem [d-gauges-end d-info-start] 35rem [d-info-end];
     }
 
     @include respond(lg-desktop) {

@@ -85,7 +85,7 @@ subscription DataSubscription($data: DataSubscriptionInput){
                                 /> 
                             )
                         }
-                        return (<h2>No Data Present</h2>)
+                        return (<h2>...None</h2>)
                     }
                 }}
             </Query>)
