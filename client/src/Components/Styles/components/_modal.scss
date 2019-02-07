@@ -11,12 +11,24 @@
     justify-content: center;
     align-items: center;
 
+    @include respond(sm-tab){
+        align-items: flex-start;
+    }
+
+
+
+
     &_content{
         display: flex;
         flex-direction: column;
         background-color: $color_white;
-        transform: translateY(-20%);
+        
         padding: 2rem;
+
+        @include respond(sm-tab){
+            transform: translateY(10%);
+        }
+
     }
 
     &_header{

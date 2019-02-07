@@ -15,6 +15,22 @@
             display: flex;
             justify-content: space-between;
 
+            & > *{
+
+                @include respond(lg-phone){
+                    font-size: 1.5rem;
+                }
+
+                @include respond(lg-tab){
+                    font-size: 1.65rem;
+                }
+
+                @include respond(lg-desktop){
+                    font-size: 2rem;
+                }
+    
+            }
+
         }
 
         &_data{

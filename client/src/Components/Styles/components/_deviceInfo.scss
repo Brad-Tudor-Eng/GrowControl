@@ -11,7 +11,41 @@
        grid-column: label-start / moisture-end;
        text-align: center;
        line-height: 2.25rem;
+
+       @include respond(lg-phone) { 
+        line-height: 3rem;
+        font-size: 4rem;
+    }
+
+    @include respond(sm-tab) { 
+        line-height: 5rem;
+    }
+
    }
+
+
+
+
+        @include respond(lg-tab) { 
+            grid-template-rows: [title-start] 4.5rem [title-end header-start] 3rem [header-end dev-name-start] 2.5rem [dev-name-end avg-input-start] minmax(2rem, 1fr) [avg-input-end tol-input-start] minmax(2rem, 1fr) [tol-input-end] 4rem [btn-end];
+            grid-template-columns: [label-start] max-content [label-end light-start] 7.5rem [light-end temp-start] 7.5rem [temp-end humidity-start] 8rem [humidity-end moisture-start] 8rem [moisture-end]; 
+            grid-row-gap: .5rem;
+        }
+
+
+        @include respond(lg-desktop) { 
+            grid-template-rows: [title-start] 3.25rem [title-end header-start] 3rem [header-end dev-name-start] 2.5rem [dev-name-end avg-input-start] minmax(2rem, 1fr) [avg-input-end tol-input-start] minmax(2rem, 1fr) [tol-input-end] 4rem [btn-end];
+            grid-template-columns: [label-start] max-content [label-end light-start] 1fr [light-end temp-start] 1fr [temp-end humidity-start] 1fr [humidity-end moisture-start] 1fr [moisture-end]; 
+            grid-row-gap: .5rem;
+        }
+
+        @include respond(sm-tab) { 
+            grid-template-rows: [title-start] 7rem [title-end header-start] 3rem [header-end dev-name-start] 2.5rem [dev-name-end avg-input-start] minmax(2rem, 1fr) [avg-input-end tol-input-start] minmax(2rem, 1fr) [tol-input-end] 4rem [btn-end];
+            grid-template-columns: [label-start] max-content [label-end light-start] 1fr [light-end temp-start] 1fr [temp-end humidity-start] 1fr [humidity-end moisture-start] 1fr [moisture-end]; 
+            grid-row-gap: .5rem;
+        }
+
+
 }
 
 
@@ -62,6 +96,15 @@
         background-color: rgba(0,0,0,.3);
         border: none;
         max-width: 9rem;
+
+        @include respond(lg-tab) { 
+            max-width: 7rem;
+        }
+        
+        
+        @include respond(lg-desktop) { 
+            max-width: 9rem;
+        }
         
         grid-row: avg-input-start / avg-input-end;
 
@@ -90,6 +133,17 @@
         background-color: rgba(0,0,0,.3);
         border: none;
         max-width: 9rem;
+
+        @include respond(lg-tab) { 
+            max-width: 7rem;
+        }
+        
+        
+        @include respond(lg-desktop) { 
+            max-width: 9rem;
+        }
+
+
         grid-row: tol-input-start / tol-input-end;
 
         &-light{
@@ -132,3 +186,11 @@
     }
 }
 
+@include respond(lg-tab) { 
+
+}
+
+
+@include respond(lg-desktop) { 
+
+}

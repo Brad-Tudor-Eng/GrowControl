@@ -33,19 +33,32 @@
             font-weight: 800i;
             letter-spacing: .2rem;
             color: rgb(238, 238, 238);
+
+            @include respond(lg-phone){
+                font-size: 1.5rem;
+            }
+    
+            @include respond(sm-tab){
+                font-size: 3rem;
+            }
+    
+            @include respond(lg-tab){
+                font-size: 4rem;
+            }
         }
         
-        @include respond('lg-tab'){
-            font-size: 5.5rem;
+        @include respond(sm-phone){
+            font-size: 3.5rem;
         }
 
-        @include respond('lg-phone'){
+        @include respond(lg-phone){
             font-size: 5rem;
         }
 
-        @include respond('sm-phone'){
-            font-size: 3.5rem;
+        @include respond(lg-tab){
+            font-size: 5.5rem;
         }
+        
     }
 
     &_tertiary{
@@ -54,6 +67,8 @@
         font-weight: 800;
         letter-spacing: .2rem;
         color: $color_primary;
+
+
     }
 }
 
@@ -89,17 +104,21 @@
         font-weight: 800i;
         color: $color_grey_dark;
 
-        @include respond('lg-tab'){
-            font-size: 3rem;
+        @include respond(sm-phone){
+       
         }
 
-        @include respond('lg-phone'){
+        @include respond(lg-phone){
             
         }
 
-        @include respond('sm-phone'){
-       
+        @include respond(lg-tab){
+            font-size: 3rem;
         }
+
+
+
+
     }
 }
 
