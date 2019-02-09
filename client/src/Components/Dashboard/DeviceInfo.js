@@ -53,7 +53,7 @@ const updateDeviceMutation = async ({ deviceId, name, oldName, oldSettings, newS
     });
     
     const { updateDevice } = data
-    console.log(updateDevice)
+    
   }
 
 
@@ -173,7 +173,18 @@ const DeviceInfo = (props) =>  {
                                 humidity: {average: humidityAvg, tol: humidityTol},
                                 moisture: {average: moistureAvg, tol: moistureTol},
                             }
-                        } ) }}
+                        } ) 
+                    //reset all inputs
+                        setNewName('')
+                        setLightAvg('')
+                        setLightTol('')
+                        setTempAvg('')
+                        setTempTol('')
+                        setHumidityAvg('')
+                        setHumidityTol('')
+                        setMoistureAvg('')
+                        setMoistureTol('')
+                    }}
                 className="dev_info_btn btn_secondary"><span className="btn_secondary-center">Submit</span></button>
                 )}
                 </ApolloConsumer>

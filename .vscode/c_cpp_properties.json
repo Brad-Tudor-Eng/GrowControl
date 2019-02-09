@@ -3,12 +3,12 @@
         {
             "name": "Win32",
             "includePath": [
+                "C:\\Users\\b6tud\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
+                "C:\\Users\\b6tud\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.5.0\\**",
                 "C:\\Program Files\\arduino-1.8.8\\tools\\**",
                 "C:\\Program Files\\arduino-1.8.8\\hardware\\arduino\\avr\\**"
             ],
-            "forcedInclude": [
-                "C:\\Program Files\\arduino-1.8.8\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
-            ],
+            "forcedInclude": [],
             "intelliSenseMode": "msvc-x64"
         }
     ],

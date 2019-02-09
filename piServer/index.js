@@ -2,7 +2,7 @@
 const SerialPort = require('serialport'); 
 const Readline = SerialPort.parsers.Readline;
 //connection port for arduino
-const port = new SerialPort('COM3'); 
+const port = new SerialPort('/dev/ttyUSB0'); 
 const parser = port.pipe(new Readline({delimiter: '\r\n'})); //Read the line only when new line comes.
 
 // ----------------------Raspberry PI Code-------------------------------------//
@@ -14,7 +14,7 @@ const   moment          = require('moment')
 const   fs              = require('fs');
 const   { sendData }    = require('./sendData')
 const   { startup }     = require('./startup')        
-//const { controlDevices } = require('./controlDevices')
+const { controlDevices } = require('./controlDevices')
 
 require('dotenv').config(); 
 
@@ -44,7 +44,7 @@ parser.on('data', function (ArduinoData) {
             sendData(message)
 
         //Process data to change Raspberry Pi controls    
-            //controlDevices(ArduinoData)
+            controlDevices({data: d, settings: device.settings})
 });//end of parser
 
 
