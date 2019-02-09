@@ -20,8 +20,7 @@ const setControlPinState = (test, key) =>{
             if(currentState != state){
                 control.writeSync(state)
             }
-            // release the control
-            //control.unexport()
+
             
 }
 

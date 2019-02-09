@@ -88,6 +88,6 @@ digitalWrite(lightPower, LOW);
 digitalWrite(moisturePower, LOW);
 digitalWrite(dhtPowerPin, LOW);
 
-//wait 2 seconds before next loop
-delay(60000);
+//wait 1 seconds before next loop
+delay(1000);
 }
