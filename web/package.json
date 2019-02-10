@@ -4,11 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js"
+    "install:server": "npm install",
+    "clean:server": "rm -rf server-b",
+    "compile:server": "npx babel server --out-dir server-b --ignore \"node_modules\"",
+    "copy:graphql": "cp server/src/schema.graphql server-b/src/schema.graphql",
+    "install:client": "cd client && yarn install",
+    "clean:client": "cd client && rm -rf build",
+    "compile:client": "cd client && yarn build",
+    "build": "npm-run-all install:server clean:server compile:server copy:graphql install:client clean:client compile:client",
+    "server": "node server-b/index.js",
+    "start": "npm-run-all build server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "amqplib": "^0.5.3",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
@@ -26,6 +36,7 @@
     "moment": "^2.23.0",
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.4",
+    "npm-run-all": "^4.1.5",
     "passport": "^0.4.0",
     "passport-local-mongoose": "^5.0.1"
   },
