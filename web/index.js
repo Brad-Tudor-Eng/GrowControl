@@ -1,5 +1,5 @@
 import { GraphQLServer, PubSub }    from 'graphql-yoga'
-
+import express                      from 'express'
 import mongoose                     from 'mongoose'
 import Query                        from './server/resolvers/Query'
 import Mutation                     from './server/resolvers/Mutation'
@@ -7,6 +7,8 @@ import Subscription                 from './server/resolvers/Subscription'
 import cookieParser                 from 'cookie-parser'
 import bodyParser                   from 'body-parser'
 import cors                         from 'cors'
+import path                         from 'path'
+
 
 require('dotenv').config()
 require('./server/broker/index')
@@ -44,6 +46,12 @@ const options = {
     subscriptions: gqlsubscribe,
     playground: gqlEndpoint
 }
+
+server.express.use( express.static(path.join(__dirname, 'build')) );
+
+server.express.get('/*', (req,res)=>{
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+})
 
 server.start( options, ()=>{
     console.log('server has started')
