@@ -74,7 +74,7 @@ const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
 /*---------------------------------------------------------------------------------------------------------------------*/
 //method for adding a new record
 const addNewRecord = async (device, date, data) => {
-  //data {time: hh:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number}
+  //data {time: HH:mm:ss, light: Number, temp: Number, humidity: Number, moisture; Number}
   let newRecord = { date, data:[data] }
       device.records.push(newRecord)
       await device.updateOne(device)

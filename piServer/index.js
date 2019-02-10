@@ -40,6 +40,7 @@ parser.on('data', function (ArduinoData) {
             //convert the data to a javascript object
             const d = JSON.parse(ArduinoData);
             dataArray.push( d )
+
             if(dataArray.length >= 60){
                 //average out the data
                 const data = processData({ dataArray })
@@ -49,6 +50,7 @@ parser.on('data', function (ArduinoData) {
                 sendData(message)
                 dataArray = []
             }     
+
             //Process data to change Raspberry Pi controls    
             controlDevices({data: d, settings: device.settings})      
 

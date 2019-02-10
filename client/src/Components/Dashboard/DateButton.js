@@ -50,7 +50,6 @@ const DateButton  = (props) => {
           variables:{data: {deviceId ,token, date}}
         });
         const { recordOneDay } = data
-        console.log(recordOneDay)
         props.setSelectedRecord(recordOneDay)
       }
 

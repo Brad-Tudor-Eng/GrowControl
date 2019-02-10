@@ -34,29 +34,6 @@ mutation updateDevice($data: UpdateDeviceInput!) {
 
 
 
-
-const updateDeviceMutation = async ({ deviceId, name, oldName, oldSettings, newSettings ,client}) => {
-    let token = await Cookies.get('xAuthG')
-    const updateName = name === '' ? oldName : name;
-    let s = oldSettings
-    for(let key in newSettings){
-        if(newSettings[key].average !== ""){
-            s[key].average = parseFloat(newSettings[key].average)
-        }
-        if(newSettings[key].tol !== ""){
-            s[key].tol = parseFloat(newSettings[key].tol)
-        }
-    }  
-    const { data } = await client.mutate({
-      mutation:UPDATE_DEVICE,
-      variables:{data: {deviceId ,token, name:updateName, settings:s }}
-    });
-    
-    const { updateDevice } = data
-    
-  }
-
-
 const DeviceInfo = (props) =>  {
 
     let settings = props.device.settings || { light: {average: 0, tol: 0}, 
@@ -86,6 +63,37 @@ const DeviceInfo = (props) =>  {
     const [humidityTol, setHumidityTol] = useState('')
     const [moistureAvg, setMoistureAvg] = useState('')
     const [moistureTol, setMoistureTol] = useState('')
+
+    const updateDeviceMutation = async ({ deviceId, name, oldName, oldSettings, newSettings ,client}) => {
+        let token = await Cookies.get('xAuthG')
+        const updateName = name === '' ? oldName : name;
+        let s = oldSettings
+        for(let key in newSettings){
+            if(newSettings[key].average !== ""){
+                s[key].average = parseFloat(newSettings[key].average)
+            }
+            if(newSettings[key].tol !== ""){
+                s[key].tol = parseFloat(newSettings[key].tol)
+            }
+        }  
+        const { data } = await client.mutate({
+          mutation:UPDATE_DEVICE,
+          variables:{data: {deviceId ,token, name:updateName, settings:s }}
+        });
+        
+    //reset all inputs
+
+        setNewName('')
+        setLightAvg('')
+        setLightTol('')
+        setTempAvg('')
+        setTempTol('')
+        setHumidityAvg('')
+        setHumidityTol('')
+        setMoistureAvg('')
+        setMoistureTol('')
+        
+      }
   
         return (
             <div className="deviceInfo card">
@@ -174,16 +182,8 @@ const DeviceInfo = (props) =>  {
                                 moisture: {average: moistureAvg, tol: moistureTol},
                             }
                         } ) 
-                    //reset all inputs
-                        setNewName('')
-                        setLightAvg('')
-                        setLightTol('')
-                        setTempAvg('')
-                        setTempTol('')
-                        setHumidityAvg('')
-                        setHumidityTol('')
-                        setMoistureAvg('')
-                        setMoistureTol('')
+                    
+
                     }}
                 className="dev_info_btn btn_secondary"><span className="btn_secondary-center">Submit</span></button>
                 )}

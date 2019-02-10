@@ -14,7 +14,7 @@ const startup = () => {
     // Print the device name to the console
     let {dev_name }  = JSON.parse(device_settings)
     console.log(`---------------------Raspberry PI Service has started------------------------`)
-    console.log( moment().format('hh:mm:ss'))
+    console.log( moment().format('HH:mm:ss'))
     console.log(`Device Name: ${dev_name}`);
 }
 
