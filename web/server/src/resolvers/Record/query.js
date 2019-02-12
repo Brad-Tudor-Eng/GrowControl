@@ -8,7 +8,7 @@ import _ from 'lodash'
 //   retrieve all records for range of dates []
 //   retrieve all records from a device      []
 
-//   format for record date: DD/MM/YYYY
+//   format for record date: MM/DD/YYYY
 
 export const recordOneDay = async (parent, {data}, ctx, info) =>{
 //given User ID and Device ID return a record for a single day

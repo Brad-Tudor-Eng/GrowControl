@@ -46,8 +46,10 @@ const processMessage = async (JSONdata,  ch, replyTo, correlationId) => {
     records:    [ {time: HH:mm:ss, light: Number, temp: Number, humidity: Number, moisture: Number} ]
     pubsub channel = `data-${today}-${userId}-${deviceId}`
   */
-
-  const today = moment().format('L');
+//pull the date from data and then remove it from the record
+  const today = data.today
+  delete data.today
+  
   const device = await Device.findById(ObjectId(id)).populate('user')
   const userId = device.user._id    
  

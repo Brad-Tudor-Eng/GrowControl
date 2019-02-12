@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const moment = require('moment');
 
 const recordSchema = new Schema({
-    date: { type: String, default: moment().format('DD/MM/YYYY') },
+    date: { type: String, default: moment().format('MM/DD/YYYY') },
     data: [{
             time: {type: String, default: moment().format('HH:mm:ss')},
             light:{ type: Number, default: 0}, 

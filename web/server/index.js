@@ -1,15 +1,19 @@
+import "@babel/polyfill";
 import { GraphQLServer, PubSub }    from 'graphql-yoga'
-
+import express                      from 'express'
 import mongoose                     from 'mongoose'
-import Query                        from './server/resolvers/Query'
-import Mutation                     from './server/resolvers/Mutation'
-import Subscription                 from './server/resolvers/Subscription'
+import Query                        from './src/resolvers/Query'
+import Mutation                     from './src/resolvers/Mutation'
+import Subscription                 from './src/resolvers/Subscription'
 import cookieParser                 from 'cookie-parser'
 import bodyParser                   from 'body-parser'
 import cors                         from 'cors'
+import path                         from 'path'
 
-require('dotenv').config()
-require('./server/broker/index')
+//comment out for heroku deployment
+//require('dotenv').config()
+
+require('./src/broker/index')
 
 export const pubsub = new PubSub()
 
@@ -17,7 +21,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true})
 
 const server = new GraphQLServer({
-    typeDefs: './server/schema.graphql',
+    typeDefs: './server/src/schema.graphql',
     resolvers: {
         Query,
         Mutation,
@@ -44,6 +48,12 @@ const options = {
     subscriptions: gqlsubscribe,
     playground: gqlEndpoint
 }
+
+server.use(express.static(path.join(__dirname, '../client')))
+
+server.get('/*',(req,res)=>{
+    res.sendFile(path.join(__dirname, '../client', 'index.html'))
+})
 
 server.start( options, ()=>{
     console.log('server has started')
