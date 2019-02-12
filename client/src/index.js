@@ -19,12 +19,12 @@ import App from './Components/App'
 
 // Create an http link:
 const httpLink = new HttpLink({
-    uri: 'http://localhost:8080/gql'
+    uri: 'https://growctrl.herokuapp.com/gql'
   });
   
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-    uri: 'ws://localhost:8080/subscribe',
+    uri: 'wss://growctrl.herokuapp.com/subscribe',
     options: {
         reconnect: true
     }

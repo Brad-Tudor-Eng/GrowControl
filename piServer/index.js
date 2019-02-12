@@ -27,7 +27,7 @@ let dataArray = []
 
                 //this code is triggered when the raspberry pi receives data from the arduino board
 parser.on('data', function (ArduinoData) {
-            
+         let t1 = moment()
             //read the settings from the JSON file
             let device_settings = fs.readFileSync(__dirname + '/settings.json', { encoding: 'utf8' });
             let device = JSON.parse(device_settings);
@@ -35,13 +35,13 @@ parser.on('data', function (ArduinoData) {
             //device        = { dev_name, user, settings, deviceId }
             //ArduinoData   = { light: Number, temp: Number, humidity: Number, moisture: Number }
             
-            
-            
             //convert the data to a javascript object
-            const d = JSON.parse(ArduinoData);
+
+	   	const d = JSON.parse(ArduinoData);
+
             dataArray.push( d )
 
-            if(dataArray.length >= 60){
+            if(dataArray.length >= 10){
                 //average out the data
                 const data = processData({ dataArray })
                 //convert the data and device settings to a buffer to be sent to the server
@@ -51,33 +51,56 @@ parser.on('data', function (ArduinoData) {
                 dataArray = []
             }     
 
-            //Process data to change Raspberry Pi controls    
-            controlDevices({data: d, settings: device.settings})      
 
+            //Process data to change Raspberry Pi controls    
+            controlDevices({data: d, settings: device.settings}) 
+
+            let t2 = moment()
+            console.log(`total time: ${t2-t1}`)
 });//end of parser
 
 const processData = ( {dataArray} ) => {
-    let lightAvg = 0
-    let tempAvg = 0
-    let humidityAvg = 0
-    let moistureAvg = 0
+let lightA = []
+let tempA = []
+let humidityA = []
+let moistureA = []
 
     dataArray.forEach(({light, temp, humidity, moisture})=>{
-        lightAvg += light
-        tempAvg += temp
-        humidityAvg += humidity
-        moistureAvg += moisture
+	lightA.push(light)
+	tempA.push(temp)
+	humidityA.push(humidity)
+	moistureA.push(moisture)
     })
 
-    lightAvg = lightAvg / dataArray.length
-    tempAvg = tempAvg / dataArray.length
-    humidityAvg = humidityAvg / dataArray.length
-    moistureAvg = moistureAvg / dataArray.length
-
+    lightAvg = reduceArry(lightA)
+    tempAvg = reduceArry(tempA)
+    humidityAvg = reduceArry(humidityA)
+    moistureAvg = reduceArry(moistureA)
+    //get the current time and date
     let time = moment().format('HH:mm:ss')
+    let today = moment().format('MM/DD/YYYY')
 
-    return {time, light: lightAvg, temp: tempAvg, humidity: humidityAvg, moisture: moistureAvg}
+    return {today, time, light: lightAvg, temp: tempAvg, humidity: humidityAvg, moisture: moistureAvg}
 
 }
 
+const reduceArry = (arry) => {
+
+let maxmin = {max: null, min: null}
+
+arry.forEach((el)=>{
+
+	if(maxmin["max"] === null){ maxmin["max"]=arry[0] }
+	if(maxmin["min"] === null){ maxmin["min"]=arry[0] }
+	
+	if(el > maxmin["max"]){maxmin["max"] = el}
+	if(el < maxmin["min"]){maxmin["min"] = el}
+})
+
+let final = arry.reduce((col, el) => col + el, 0)
+final = (final - maxmin["max"] - maxmin["min"])/(arry.length - 2)
+
+
+return Math.round(final)
+}
 

@@ -1,1 +1,1 @@
-{"deviceId":"5c5c8af29f0cbb0017d77580","dev_name":"DemoDevice","settings":{"light":{"average":700,"tol":5},"temp":{"average":75,"tol":5},"humidity":{"average":85,"tol":5},"moisture":{"average":75,"tol":5}}}
+{"deviceId":"5c623f4c764e8d00178ba33b","dev_name":"Demo Device","settings":{"light":{"average":700,"tol":5},"temp":{"average":75,"tol":5},"humidity":{"average":85,"tol":5},"moisture":{"average":75,"tol":5}}}

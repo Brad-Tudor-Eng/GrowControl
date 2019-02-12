@@ -11,7 +11,7 @@ const setControlPinState = (test, key) =>{
 
     const state = test ? 1 : 0;
 
-    console.log(`setting state of the ${key} pin ${controlPins[key]} to ${state}`)
+
 
             let control = new Gpio(controlPins[key],'out')
             // check the current state of the pin
