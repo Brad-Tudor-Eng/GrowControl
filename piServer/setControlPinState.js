@@ -1,4 +1,5 @@
 const   Gpio    = require('onoff').Gpio
+const { inRange } = require('./inRange')
 
 const controlPins = {
     light: 23,
@@ -7,17 +8,19 @@ const controlPins = {
     moisture: 20
 }
 
-const setControlPinState = (test, key) =>{
+const setControlPinState = ({data, settings, key}) =>{
 
-    const state = test ? 1 : 0;
-
-
+    //solinoids are wired with a normally close state
+    //false indicates that the sensor is ON
+    const ctrl = { on: 0, off: 1, }
 
             let control = new Gpio(controlPins[key],'out')
             // check the current state of the pin
             const currentState = control.readSync()
-            // if the current state doesn't match the test change it.
-            if(currentState != state){
+            // test to see what the pin state should be.
+            const test = inRange({currentState, data, settings, key})
+            const state = test ? ctrl.off : ctrl.on;
+            if(currentState !== state){
                 control.writeSync(state)
             }
 
