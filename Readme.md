@@ -1,17 +1,20 @@
 # Grow Control
 > IOT automated Green house and control system.
 
-Grow Control is a Raspberry Pi / Arduino based fully automated greenhouse. The React frontend allows the user to monitor the data and manage the physical devices as they see fit. Historic measurements are stored in a database and live data is streamed to the user though websockets.
 
-The project is based off the MERN Stack. RabbitMQ serves as the message broker to handle direct device communication. A GraphQL Yoga server handles the backend logic. The client side is written using the React framework. Access to a demo account which has a physical device is available upon request. All sensors are currently attached to the physical device, but the only output devices currently attached are the heater and humidifier. 
 
 ![](/readme/growctrl.JPG)
 
 ## About
 
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+### Physical Device
+The Raspberry Pi receives analogue and digital data from several sensors attached to an arduino red board.  Based off the environmental data, the raspberry pi then adjusts the sensors to meet the users specification.  It then transmits the data via the AMPQ protocol to RabbitMQ and the API server.
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+### Backend
+The API is based off the GraphQL Yoga package.  It hosts the Frontend and handles all of the data from the physical device.  The data is passed off to a MongoDB database and streamed to the user using GraphQL Subscriptions.
+
+### Frontend
+The React Frontend serves as the UI for the phsyical device.  A live-chart, data table and gauges show the latest data.  A simple control table is avaliable for the user to modify the phsyical device settings.  Futher menus are avaliable for standard CRUD operations on the users account and the users devices.
 
 ## Technologies
 
